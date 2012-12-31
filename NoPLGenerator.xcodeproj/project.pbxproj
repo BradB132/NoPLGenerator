@@ -7,97 +7,159 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9B26135B16801A7F00A2CDAE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B26135A16801A7F00A2CDAE /* Foundation.framework */; };
-		9B26135E16801A7F00A2CDAE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B26135D16801A7F00A2CDAE /* main.m */; };
-		9B26136216801A7F00A2CDAE /* NoPLGenerator.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9B26136116801A7F00A2CDAE /* NoPLGenerator.1 */; };
+		9B148221168F6184007FC679 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B148220168F6184007FC679 /* main.cpp */; };
+		9B148223168F6184007FC679 /* NoPLGenerator.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9B148222168F6184007FC679 /* NoPLGenerator.1 */; };
+		9B1483A2168F67AE007FC679 /* libNoPLc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B148333168F67AE007FC679 /* libNoPLc.a */; };
+		9B1483A3168F67AE007FC679 /* libNoPLRuntime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B148339168F67AE007FC679 /* libNoPLRuntime.a */; };
+		9B1483D9168FBE42007FC679 /* SchemaData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B1483D7168FBE42007FC679 /* SchemaData.cpp */; };
+		9B1483E01690BBB6007FC679 /* ClassData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B1483DE1690BBB6007FC679 /* ClassData.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		9B26135416801A7F00A2CDAE /* CopyFiles */ = {
+		9B14821A168F6184007FC679 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				9B26136216801A7F00A2CDAE /* NoPLGenerator.1 in CopyFiles */,
+				9B148223168F6184007FC679 /* NoPLGenerator.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9B26135616801A7F00A2CDAE /* NoPLGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NoPLGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B26135A16801A7F00A2CDAE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		9B26135D16801A7F00A2CDAE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9B26136016801A7F00A2CDAE /* NoPLGenerator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NoPLGenerator-Prefix.pch"; sourceTree = "<group>"; };
-		9B26136116801A7F00A2CDAE /* NoPLGenerator.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = NoPLGenerator.1; sourceTree = "<group>"; };
+		9B14821C168F6184007FC679 /* NoPLGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NoPLGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B148220168F6184007FC679 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		9B148222168F6184007FC679 /* NoPLGenerator.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = NoPLGenerator.1; sourceTree = "<group>"; };
+		9B148332168F67AE007FC679 /* NoPLc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPLc.h; sourceTree = "<group>"; };
+		9B148333168F67AE007FC679 /* libNoPLc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libNoPLc.a; sourceTree = "<group>"; };
+		9B148336168F67AE007FC679 /* NoPLRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPLRuntime.h; sourceTree = "<group>"; };
+		9B148337168F67AE007FC679 /* NoPLStandardFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPLStandardFunctions.h; sourceTree = "<group>"; };
+		9B148338168F67AE007FC679 /* NoPLValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPLValues.h; sourceTree = "<group>"; };
+		9B148339168F67AE007FC679 /* libNoPLRuntime.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libNoPLRuntime.a; sourceTree = "<group>"; };
+		9B1483D7168FBE42007FC679 /* SchemaData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SchemaData.cpp; sourceTree = "<group>"; };
+		9B1483D8168FBE42007FC679 /* SchemaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchemaData.h; sourceTree = "<group>"; };
+		9B1483DB168FC18C007FC679 /* NoPLInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPLInterface.h; sourceTree = "<group>"; };
+		9B1483DE1690BBB6007FC679 /* ClassData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClassData.cpp; sourceTree = "<group>"; };
+		9B1483DF1690BBB6007FC679 /* ClassData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassData.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9B26135316801A7F00A2CDAE /* Frameworks */ = {
+		9B148219168F6184007FC679 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B26135B16801A7F00A2CDAE /* Foundation.framework in Frameworks */,
+				9B1483A2168F67AE007FC679 /* libNoPLc.a in Frameworks */,
+				9B1483A3168F67AE007FC679 /* libNoPLRuntime.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9B26134B16801A7F00A2CDAE = {
+		9B148211168F6184007FC679 = {
 			isa = PBXGroup;
 			children = (
-				9B26135C16801A7F00A2CDAE /* NoPLGenerator */,
-				9B26135916801A7F00A2CDAE /* Frameworks */,
-				9B26135716801A7F00A2CDAE /* Products */,
+				9B14832C168F67AE007FC679 /* NoPL_repo */,
+				9B14821F168F6184007FC679 /* NoPLGenerator */,
+				9B1483D0168FB111007FC679 /* DataRepresentation */,
+				9B14821D168F6184007FC679 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		9B26135716801A7F00A2CDAE /* Products */ = {
+		9B14821D168F6184007FC679 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9B26135616801A7F00A2CDAE /* NoPLGenerator */,
+				9B14821C168F6184007FC679 /* NoPLGenerator */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9B26135916801A7F00A2CDAE /* Frameworks */ = {
+		9B14821F168F6184007FC679 /* NoPLGenerator */ = {
 			isa = PBXGroup;
 			children = (
-				9B26135A16801A7F00A2CDAE /* Foundation.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9B26135C16801A7F00A2CDAE /* NoPLGenerator */ = {
-			isa = PBXGroup;
-			children = (
-				9B26135D16801A7F00A2CDAE /* main.m */,
-				9B26136116801A7F00A2CDAE /* NoPLGenerator.1 */,
-				9B26135F16801A7F00A2CDAE /* Supporting Files */,
+				9B148220168F6184007FC679 /* main.cpp */,
+				9B148222168F6184007FC679 /* NoPLGenerator.1 */,
 			);
 			path = NoPLGenerator;
 			sourceTree = "<group>";
 		};
-		9B26135F16801A7F00A2CDAE /* Supporting Files */ = {
+		9B14832C168F67AE007FC679 /* NoPL_repo */ = {
 			isa = PBXGroup;
 			children = (
-				9B26136016801A7F00A2CDAE /* NoPLGenerator-Prefix.pch */,
+				9B14832F168F67AE007FC679 /* CompiledLibs */,
 			);
-			name = "Supporting Files";
+			path = NoPL_repo;
+			sourceTree = "<group>";
+		};
+		9B14832F168F67AE007FC679 /* CompiledLibs */ = {
+			isa = PBXGroup;
+			children = (
+				9B148330168F67AE007FC679 /* compiler */,
+				9B148334168F67AE007FC679 /* runtime */,
+			);
+			path = CompiledLibs;
+			sourceTree = "<group>";
+		};
+		9B148330168F67AE007FC679 /* compiler */ = {
+			isa = PBXGroup;
+			children = (
+				9B148331168F67AE007FC679 /* include */,
+				9B148333168F67AE007FC679 /* libNoPLc.a */,
+			);
+			path = compiler;
+			sourceTree = "<group>";
+		};
+		9B148331168F67AE007FC679 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				9B148332168F67AE007FC679 /* NoPLc.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		9B148334168F67AE007FC679 /* runtime */ = {
+			isa = PBXGroup;
+			children = (
+				9B148335168F67AE007FC679 /* include */,
+				9B148339168F67AE007FC679 /* libNoPLRuntime.a */,
+			);
+			path = runtime;
+			sourceTree = "<group>";
+		};
+		9B148335168F67AE007FC679 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				9B148336168F67AE007FC679 /* NoPLRuntime.h */,
+				9B148337168F67AE007FC679 /* NoPLStandardFunctions.h */,
+				9B148338168F67AE007FC679 /* NoPLValues.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		9B1483D0168FB111007FC679 /* DataRepresentation */ = {
+			isa = PBXGroup;
+			children = (
+				9B1483DB168FC18C007FC679 /* NoPLInterface.h */,
+				9B1483D8168FBE42007FC679 /* SchemaData.h */,
+				9B1483D7168FBE42007FC679 /* SchemaData.cpp */,
+				9B1483DF1690BBB6007FC679 /* ClassData.h */,
+				9B1483DE1690BBB6007FC679 /* ClassData.cpp */,
+			);
+			path = DataRepresentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9B26135516801A7F00A2CDAE /* NoPLGenerator */ = {
+		9B14821B168F6184007FC679 /* NoPLGenerator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9B26136516801A7F00A2CDAE /* Build configuration list for PBXNativeTarget "NoPLGenerator" */;
+			buildConfigurationList = 9B148226168F6184007FC679 /* Build configuration list for PBXNativeTarget "NoPLGenerator" */;
 			buildPhases = (
-				9B26135216801A7F00A2CDAE /* Sources */,
-				9B26135316801A7F00A2CDAE /* Frameworks */,
-				9B26135416801A7F00A2CDAE /* CopyFiles */,
+				9B148218168F6184007FC679 /* Sources */,
+				9B148219168F6184007FC679 /* Frameworks */,
+				9B14821A168F6184007FC679 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -105,48 +167,50 @@
 			);
 			name = NoPLGenerator;
 			productName = NoPLGenerator;
-			productReference = 9B26135616801A7F00A2CDAE /* NoPLGenerator */;
+			productReference = 9B14821C168F6184007FC679 /* NoPLGenerator */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		9B26134D16801A7F00A2CDAE /* Project object */ = {
+		9B148213168F6184007FC679 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Brad Bambara";
 			};
-			buildConfigurationList = 9B26135016801A7F00A2CDAE /* Build configuration list for PBXProject "NoPLGenerator" */;
+			buildConfigurationList = 9B148216168F6184007FC679 /* Build configuration list for PBXProject "NoPLGenerator" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 9B26134B16801A7F00A2CDAE;
-			productRefGroup = 9B26135716801A7F00A2CDAE /* Products */;
+			mainGroup = 9B148211168F6184007FC679;
+			productRefGroup = 9B14821D168F6184007FC679 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9B26135516801A7F00A2CDAE /* NoPLGenerator */,
+				9B14821B168F6184007FC679 /* NoPLGenerator */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9B26135216801A7F00A2CDAE /* Sources */ = {
+		9B148218168F6184007FC679 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B26135E16801A7F00A2CDAE /* main.m in Sources */,
+				9B148221168F6184007FC679 /* main.cpp in Sources */,
+				9B1483D9168FBE42007FC679 /* SchemaData.cpp in Sources */,
+				9B1483E01690BBB6007FC679 /* ClassData.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		9B26136316801A7F00A2CDAE /* Debug */ = {
+		9B148224168F6184007FC679 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -170,13 +234,15 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
-		9B26136416801A7F00A2CDAE /* Release */ = {
+		9B148225168F6184007FC679 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -194,25 +260,33 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
 			name = Release;
 		};
-		9B26136616801A7F00A2CDAE /* Debug */ = {
+		9B148227168F6184007FC679 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NoPLGenerator/NoPLGenerator-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/NoPL_repo/CompiledLibs/compiler\"",
+					"\"$(SRCROOT)/NoPL_repo/CompiledLibs/runtime\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		9B26136716801A7F00A2CDAE /* Release */ = {
+		9B148228168F6184007FC679 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NoPLGenerator/NoPLGenerator-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/NoPL_repo/CompiledLibs/compiler\"",
+					"\"$(SRCROOT)/NoPL_repo/CompiledLibs/runtime\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -220,25 +294,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9B26135016801A7F00A2CDAE /* Build configuration list for PBXProject "NoPLGenerator" */ = {
+		9B148216168F6184007FC679 /* Build configuration list for PBXProject "NoPLGenerator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9B26136316801A7F00A2CDAE /* Debug */,
-				9B26136416801A7F00A2CDAE /* Release */,
+				9B148224168F6184007FC679 /* Debug */,
+				9B148225168F6184007FC679 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9B26136516801A7F00A2CDAE /* Build configuration list for PBXNativeTarget "NoPLGenerator" */ = {
+		9B148226168F6184007FC679 /* Build configuration list for PBXNativeTarget "NoPLGenerator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9B26136616801A7F00A2CDAE /* Debug */,
-				9B26136716801A7F00A2CDAE /* Release */,
+				9B148227168F6184007FC679 /* Debug */,
+				9B148228168F6184007FC679 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 9B26134D16801A7F00A2CDAE /* Project object */;
+	rootObject = 9B148213168F6184007FC679 /* Project object */;
 }

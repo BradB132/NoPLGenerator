@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9B26135516801A7F00A2CDAE"
+               BlueprintIdentifier = "9B14821B168F6184007FC679"
                BuildableName = "NoPLGenerator"
                BlueprintName = "NoPLGenerator"
                ReferencedContainer = "container:NoPLGenerator.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9B26135516801A7F00A2CDAE"
+            BlueprintIdentifier = "9B14821B168F6184007FC679"
             BuildableName = "NoPLGenerator"
             BlueprintName = "NoPLGenerator"
             ReferencedContainer = "container:NoPLGenerator.xcodeproj">
@@ -51,7 +51,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9B26135516801A7F00A2CDAE"
+            BlueprintIdentifier = "9B14821B168F6184007FC679"
             BuildableName = "NoPLGenerator"
             BlueprintName = "NoPLGenerator"
             ReferencedContainer = "container:NoPLGenerator.xcodeproj">
@@ -59,11 +59,11 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/bradbambara/Documents/Code/NoPLGenerator/Examples/example.xsd"
+            argument = "/Users/bradbambara/Documents/Code/NoPLGenerator/NoPLGenerator/Examples/testSchema.xsd"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "placeholder"
+            argument = "/Users/bradbambara/Documents/Code/NoPLGenerator/NoPLGenerator/Examples/objC.nopl"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -79,7 +79,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9B26135516801A7F00A2CDAE"
+            BlueprintIdentifier = "9B14821B168F6184007FC679"
             BuildableName = "NoPLGenerator"
             BlueprintName = "NoPLGenerator"
             ReferencedContainer = "container:NoPLGenerator.xcodeproj">
