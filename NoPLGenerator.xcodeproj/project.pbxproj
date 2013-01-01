@@ -13,6 +13,7 @@
 		9B1483A3168F67AE007FC679 /* libNoPLRuntime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B148339168F67AE007FC679 /* libNoPLRuntime.a */; };
 		9B1483D9168FBE42007FC679 /* SchemaData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B1483D7168FBE42007FC679 /* SchemaData.cpp */; };
 		9B1483E01690BBB6007FC679 /* ClassData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B1483DE1690BBB6007FC679 /* ClassData.cpp */; };
+		A2D77DE61692536100E892D1 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A2D77DE31692526400E892D1 /* libxml2.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +44,7 @@
 		9B1483DB168FC18C007FC679 /* NoPLInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPLInterface.h; sourceTree = "<group>"; };
 		9B1483DE1690BBB6007FC679 /* ClassData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClassData.cpp; sourceTree = "<group>"; };
 		9B1483DF1690BBB6007FC679 /* ClassData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassData.h; sourceTree = "<group>"; };
+		A2D77DE31692526400E892D1 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2D77DE61692536100E892D1 /* libxml2.dylib in Frameworks */,
 				9B1483A2168F67AE007FC679 /* libNoPLc.a in Frameworks */,
 				9B1483A3168F67AE007FC679 /* libNoPLRuntime.a in Frameworks */,
 			);
@@ -61,6 +64,7 @@
 		9B148211168F6184007FC679 = {
 			isa = PBXGroup;
 			children = (
+				A2D77DE31692526400E892D1 /* libxml2.dylib */,
 				9B14832C168F67AE007FC679 /* NoPL_repo */,
 				9B14821F168F6184007FC679 /* NoPLGenerator */,
 				9B1483D0168FB111007FC679 /* DataRepresentation */,
@@ -234,10 +238,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -260,9 +265,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = "";
 				SDKROOT = macosx;
 			};
 			name = Release;
