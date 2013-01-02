@@ -11,8 +11,14 @@
 		9B148223168F6184007FC679 /* NoPLGenerator.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9B148222168F6184007FC679 /* NoPLGenerator.1 */; };
 		9B1483A2168F67AE007FC679 /* libNoPLc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B148333168F67AE007FC679 /* libNoPLc.a */; };
 		9B1483A3168F67AE007FC679 /* libNoPLRuntime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B148339168F67AE007FC679 /* libNoPLRuntime.a */; };
-		9B1483D9168FBE42007FC679 /* SchemaData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B1483D7168FBE42007FC679 /* SchemaData.cpp */; };
-		9B1483E01690BBB6007FC679 /* ClassData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B1483DE1690BBB6007FC679 /* ClassData.cpp */; };
+		9B14841D1693D68F007FC679 /* AttributeData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B1484091693D68F007FC679 /* AttributeData.cpp */; };
+		9B14841E1693D68F007FC679 /* AttributeGroupData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B14840B1693D68F007FC679 /* AttributeGroupData.cpp */; };
+		9B1484201693D68F007FC679 /* ComplexTypeData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B14840F1693D68F007FC679 /* ComplexTypeData.cpp */; };
+		9B1484211693D68F007FC679 /* ElementData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B1484111693D68F007FC679 /* ElementData.cpp */; };
+		9B1484221693D68F007FC679 /* GroupData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B1484131693D68F007FC679 /* GroupData.cpp */; };
+		9B1484231693D68F007FC679 /* NotationData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B1484161693D68F007FC679 /* NotationData.cpp */; };
+		9B1484241693D68F007FC679 /* SchemaData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B1484181693D68F007FC679 /* SchemaData.cpp */; };
+		9B1484251693D68F007FC679 /* SimpleTypeData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B14841A1693D68F007FC679 /* SimpleTypeData.cpp */; };
 		A2D77DE61692536100E892D1 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A2D77DE31692526400E892D1 /* libxml2.dylib */; };
 /* End PBXBuildFile section */
 
@@ -39,11 +45,24 @@
 		9B148337168F67AE007FC679 /* NoPLStandardFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPLStandardFunctions.h; sourceTree = "<group>"; };
 		9B148338168F67AE007FC679 /* NoPLValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPLValues.h; sourceTree = "<group>"; };
 		9B148339168F67AE007FC679 /* libNoPLRuntime.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libNoPLRuntime.a; sourceTree = "<group>"; };
-		9B1483D7168FBE42007FC679 /* SchemaData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SchemaData.cpp; sourceTree = "<group>"; };
-		9B1483D8168FBE42007FC679 /* SchemaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchemaData.h; sourceTree = "<group>"; };
-		9B1483DB168FC18C007FC679 /* NoPLInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPLInterface.h; sourceTree = "<group>"; };
-		9B1483DE1690BBB6007FC679 /* ClassData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClassData.cpp; sourceTree = "<group>"; };
-		9B1483DF1690BBB6007FC679 /* ClassData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassData.h; sourceTree = "<group>"; };
+		9B1484091693D68F007FC679 /* AttributeData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttributeData.cpp; sourceTree = "<group>"; };
+		9B14840A1693D68F007FC679 /* AttributeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeData.h; sourceTree = "<group>"; };
+		9B14840B1693D68F007FC679 /* AttributeGroupData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttributeGroupData.cpp; sourceTree = "<group>"; };
+		9B14840C1693D68F007FC679 /* AttributeGroupData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeGroupData.h; sourceTree = "<group>"; };
+		9B14840F1693D68F007FC679 /* ComplexTypeData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComplexTypeData.cpp; sourceTree = "<group>"; };
+		9B1484101693D68F007FC679 /* ComplexTypeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplexTypeData.h; sourceTree = "<group>"; };
+		9B1484111693D68F007FC679 /* ElementData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ElementData.cpp; sourceTree = "<group>"; };
+		9B1484121693D68F007FC679 /* ElementData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElementData.h; sourceTree = "<group>"; };
+		9B1484131693D68F007FC679 /* GroupData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GroupData.cpp; sourceTree = "<group>"; };
+		9B1484141693D68F007FC679 /* GroupData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupData.h; sourceTree = "<group>"; };
+		9B1484151693D68F007FC679 /* NoPLInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPLInterface.h; sourceTree = "<group>"; };
+		9B1484161693D68F007FC679 /* NotationData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NotationData.cpp; sourceTree = "<group>"; };
+		9B1484171693D68F007FC679 /* NotationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotationData.h; sourceTree = "<group>"; };
+		9B1484181693D68F007FC679 /* SchemaData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SchemaData.cpp; sourceTree = "<group>"; };
+		9B1484191693D68F007FC679 /* SchemaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchemaData.h; sourceTree = "<group>"; };
+		9B14841A1693D68F007FC679 /* SimpleTypeData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleTypeData.cpp; sourceTree = "<group>"; };
+		9B14841B1693D68F007FC679 /* SimpleTypeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTypeData.h; sourceTree = "<group>"; };
+		9B1484271693D6A9007FC679 /* NoPLVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPLVector.h; sourceTree = "<group>"; };
 		A2D77DE31692526400E892D1 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -67,7 +86,6 @@
 				A2D77DE31692526400E892D1 /* libxml2.dylib */,
 				9B14832C168F67AE007FC679 /* NoPL_repo */,
 				9B14821F168F6184007FC679 /* NoPLGenerator */,
-				9B1483D0168FB111007FC679 /* DataRepresentation */,
 				9B14821D168F6184007FC679 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,6 +101,8 @@
 		9B14821F168F6184007FC679 /* NoPLGenerator */ = {
 			isa = PBXGroup;
 			children = (
+				9B1484081693D68F007FC679 /* DataRepresentation */,
+				9B14841C1693D68F007FC679 /* NoPLSupport */,
 				9B148220168F6184007FC679 /* main.cpp */,
 				9B148222168F6184007FC679 /* NoPLGenerator.1 */,
 			);
@@ -142,16 +162,36 @@
 			path = include;
 			sourceTree = "<group>";
 		};
-		9B1483D0168FB111007FC679 /* DataRepresentation */ = {
+		9B1484081693D68F007FC679 /* DataRepresentation */ = {
 			isa = PBXGroup;
 			children = (
-				9B1483DB168FC18C007FC679 /* NoPLInterface.h */,
-				9B1483D8168FBE42007FC679 /* SchemaData.h */,
-				9B1483D7168FBE42007FC679 /* SchemaData.cpp */,
-				9B1483DF1690BBB6007FC679 /* ClassData.h */,
-				9B1483DE1690BBB6007FC679 /* ClassData.cpp */,
+				9B1484091693D68F007FC679 /* AttributeData.cpp */,
+				9B14840A1693D68F007FC679 /* AttributeData.h */,
+				9B14840B1693D68F007FC679 /* AttributeGroupData.cpp */,
+				9B14840C1693D68F007FC679 /* AttributeGroupData.h */,
+				9B14840F1693D68F007FC679 /* ComplexTypeData.cpp */,
+				9B1484101693D68F007FC679 /* ComplexTypeData.h */,
+				9B1484111693D68F007FC679 /* ElementData.cpp */,
+				9B1484121693D68F007FC679 /* ElementData.h */,
+				9B1484131693D68F007FC679 /* GroupData.cpp */,
+				9B1484141693D68F007FC679 /* GroupData.h */,
+				9B1484151693D68F007FC679 /* NoPLInterface.h */,
+				9B1484161693D68F007FC679 /* NotationData.cpp */,
+				9B1484171693D68F007FC679 /* NotationData.h */,
+				9B1484181693D68F007FC679 /* SchemaData.cpp */,
+				9B1484191693D68F007FC679 /* SchemaData.h */,
+				9B14841A1693D68F007FC679 /* SimpleTypeData.cpp */,
+				9B14841B1693D68F007FC679 /* SimpleTypeData.h */,
 			);
 			path = DataRepresentation;
+			sourceTree = "<group>";
+		};
+		9B14841C1693D68F007FC679 /* NoPLSupport */ = {
+			isa = PBXGroup;
+			children = (
+				9B1484271693D6A9007FC679 /* NoPLVector.h */,
+			);
+			path = NoPLSupport;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,8 +246,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B148221168F6184007FC679 /* main.cpp in Sources */,
-				9B1483D9168FBE42007FC679 /* SchemaData.cpp in Sources */,
-				9B1483E01690BBB6007FC679 /* ClassData.cpp in Sources */,
+				9B14841D1693D68F007FC679 /* AttributeData.cpp in Sources */,
+				9B14841E1693D68F007FC679 /* AttributeGroupData.cpp in Sources */,
+				9B1484201693D68F007FC679 /* ComplexTypeData.cpp in Sources */,
+				9B1484211693D68F007FC679 /* ElementData.cpp in Sources */,
+				9B1484221693D68F007FC679 /* GroupData.cpp in Sources */,
+				9B1484231693D68F007FC679 /* NotationData.cpp in Sources */,
+				9B1484241693D68F007FC679 /* SchemaData.cpp in Sources */,
+				9B1484251693D68F007FC679 /* SimpleTypeData.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
