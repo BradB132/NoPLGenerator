@@ -25,8 +25,7 @@ public:
 	
 protected:
 	
-	//TODO: list of classes
-	//TODO: list of enums
+	//(annotation?),((attribute|attributeGroup)*,anyAttribute?))
 	
 };
 

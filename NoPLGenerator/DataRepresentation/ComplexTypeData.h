@@ -25,8 +25,7 @@ public:
 	
 protected:
 	
-	//TODO: list of classes
-	//TODO: list of enums
+	//(annotation?,(simpleContent|complexContent|((group|all|choice|sequence)?,((attribute|attributeGroup)*,anyAttribute?))))
 	
 };
 

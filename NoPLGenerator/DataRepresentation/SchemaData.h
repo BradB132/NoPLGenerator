@@ -44,6 +44,8 @@ public:
 	
 protected:
 	
+	//((include|import|redefine|annotation)*,(((simpleType|complexType|group|attributeGroup)|element|attribute|notation),annotation*)*)
+	
 	//things that can be inside the schema tag
 	NoPLVector<ElementData*>* elements;
 	NoPLVector<AttributeData*>* attributes;
