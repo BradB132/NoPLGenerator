@@ -3,7 +3,6 @@
 	xmlns:ts="http://testing"
 	targetNamespace="http://testing">
 
-<!-- 
 <element name="orderperson" type="string"/>
 <element name="name" type="string"/>
 <element name="address" type="string"/>
@@ -13,11 +12,9 @@
 <element name="note" type="string"/>
 <element name="quantity" type="positiveInteger"/>
 <element name="price" type="decimal"/>
--->
 
 <attribute name="orderid" type="string"></attribute>
 
-<!--
 <element name="shipto">
   <complexType>
     <sequence>
@@ -39,17 +36,14 @@
     </sequence>
   </complexType>
 </element>
--->
 
 <element name="shiporder">
   <complexType>
-<!--
     <sequence>
       <element ref="ts:orderperson"/>
       <element ref="ts:shipto"/>
       <element ref="ts:item" maxOccurs="unbounded"/>
     </sequence>
--->
     <attribute ref="ts:orderid" use="required"/>
   </complexType>
 </element>

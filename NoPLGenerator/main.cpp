@@ -7,8 +7,6 @@
 //
 
 #include <iostream>
-#include "SchemaData.h"
-
 #include <libxml/parser.h>
 #include <libxml/xmlschemas.h>
 #include <libxml/schemasInternals.h>
@@ -19,9 +17,11 @@
 #include "NoPLStandardFunctions.h"
 #include "NoPLRuntime.h"
 
+#include "NoPLSchemaNode.h"
+
 #pragma mark - Declared variables
 
-SchemaData* schemaData;
+NoPLSchemaNode* schemaData;
 
 #pragma mark - Schema validation
 
@@ -46,7 +46,7 @@ int isSchemaValid(xmlDocPtr schema_doc)
 
 void processNoPLFeedback(const char* string, NoPL_StringFeedbackType type)
 {
-	printf("NoPL: %s", string);
+	printf("NoPL: %s\n", string);
 }
 
 NoPL_FunctionValue evaluateNoPLFunction(void* calledOnObject, const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc)
@@ -74,8 +74,8 @@ NoPL_FunctionValue evaluateNoPLFunction(void* calledOnObject, const char* functi
 	else
 	{
 		//we're attempting to get at a specific object
-		SchemaBaseData* base = (SchemaBaseData*)calledOnObject;
-		retVal = base->evaluateFunction(functionName, argv, argc);
+		NoPLInterface* noplObject = (NoPLInterface*)calledOnObject;
+		retVal = noplObject->evaluateFunction(functionName, argv, argc);
 	}
 	
 	if(retVal.type != NoPL_DataType_Uninitialized)
@@ -85,9 +85,16 @@ NoPL_FunctionValue evaluateNoPLFunction(void* calledOnObject, const char* functi
 
 NoPL_FunctionValue evaluateNoPLSubscript(void* calledOnObject, NoPL_FunctionValue index)
 {
-	NoPL_FunctionValue val;
-	val.type = NoPL_DataType_Uninitialized;
-	return val;
+	NoPL_FunctionValue retVal;
+	retVal.type = NoPL_DataType_Uninitialized;
+	
+	if(calledOnObject)
+	{
+		NoPLInterface* noplObject = (NoPLInterface*)calledOnObject;
+		retVal = noplObject->evaluateSubscript(index);
+	}
+	
+	return retVal;
 }
 
 #pragma mark - main
@@ -123,7 +130,7 @@ int main(int argc, const char * argv[])
 	}
 	
 	//we have valid schema XML, build that into a series of model objects
-	schemaData = new SchemaData(xmlDoc->children);
+	schemaData = new NoPLSchemaNode(xmlDoc->children);
 	
 	//compile the nopl script
 	NoPL_CompileContext noplContext = newNoPL_CompileContext();
