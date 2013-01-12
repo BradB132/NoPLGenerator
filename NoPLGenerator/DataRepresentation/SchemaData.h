@@ -31,14 +31,13 @@ public:
 	~SchemaData();
 	
 	virtual NoPL_FunctionValue evaluateFunction(const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc);
-	virtual NoPL_FunctionValue evaluateSubscript(NoPL_FunctionValue index);
 	
 	//accessors
+	NoPLVector<AnnotationData*>* getAnnotations();
 	NoPLVector<ElementData*>* getElements();
 	NoPLVector<AttributeData*>* getAttributes();
 	NoPLVector<AttributeGroupData*>* getAttributeGroups();
 	NoPLVector<GroupData*>* getGroups();
-	NoPLVector<AnnotationData*>* getAnnotations();
 	NoPLVector<NotationData*>* getNotations();
 	NoPLVector<SimpleTypeData*>* getSimpleTypes();
 	NoPLVector<ComplexTypeData*>* getComplexTypes();
@@ -46,9 +45,7 @@ public:
 protected:
 	
 	//((include|import|redefine|annotation)*,(((simpleType|complexType|group|attributeGroup)|element|attribute|notation),annotation*)*)
-	xmlSchemaPtr _schema;
-	
-	AnnotationData* annotation;
+	NoPLVector<AnnotationData*>* annotations;
 	NoPLVector<ElementData*>* elements;
 	NoPLVector<AttributeData*>* attributes;
 	NoPLVector<AttributeGroupData*>* attributeGroups;

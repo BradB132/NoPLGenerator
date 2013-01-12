@@ -24,7 +24,7 @@ NoPL_FunctionValue SchemaBaseData::evaluateFunction(const char* functionName, co
 	NoPL_FunctionValue retVal;
 	retVal.type = NoPL_DataType_Uninitialized;
 	
-	//double check we have the correct object
+	//we're not accepting any arguments
 	if(argc == 0)
 	{
 		const xmlChar* value = xmlGetProp(node, (xmlChar*)functionName);

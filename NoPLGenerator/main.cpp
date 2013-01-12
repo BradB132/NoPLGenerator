@@ -8,13 +8,20 @@
 
 #include <iostream>
 #include "SchemaData.h"
-#include "NoPLc.h"
-#include "NoPLRuntime.h"
 
 #include <libxml/parser.h>
 #include <libxml/xmlschemas.h>
 #include <libxml/schemasInternals.h>
 #include <libxml/xmlschemastypes.h>
+
+#include "NoPLc.h"
+#include "NoPLValues.h"
+#include "NoPLStandardFunctions.h"
+#include "NoPLRuntime.h"
+
+#pragma mark - Declared variables
+
+SchemaData* schemaData;
 
 #pragma mark - Schema validation
 
@@ -37,7 +44,51 @@ int isSchemaValid(xmlDocPtr schema_doc)
 
 #pragma mark - NoPL callbacks
 
-//TODO: nopl callbacks
+void processNoPLFeedback(const char* string, NoPL_StringFeedbackType type)
+{
+	printf("NoPL: %s", string);
+}
+
+NoPL_FunctionValue evaluateNoPLFunction(void* calledOnObject, const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc)
+{
+	NoPL_FunctionValue retVal;
+	retVal.type = NoPL_DataType_Uninitialized;
+	
+	//check if we're calling a global
+	if(!calledOnObject)
+	{
+		//calling a global, we're not accepting any arguments
+		if(argc == 0)
+		{
+			if(!strcmp(functionName, "schema") && schemaData)
+			{
+				retVal.pointerValue = schemaData;
+				retVal.type = NoPL_DataType_Pointer;
+			}
+			else if(!strcmp(functionName, "classes"))
+			{
+				//TODO: class abstractions
+			}
+		}
+	}
+	else
+	{
+		//we're attempting to get at a specific object
+		SchemaBaseData* base = (SchemaBaseData*)calledOnObject;
+		retVal = base->evaluateFunction(functionName, argv, argc);
+	}
+	
+	if(retVal.type != NoPL_DataType_Uninitialized)
+		return retVal;
+	return nopl_standardFunctions(calledOnObject, functionName, argv, argc);
+}
+
+NoPL_FunctionValue evaluateNoPLSubscript(void* calledOnObject, NoPL_FunctionValue index)
+{
+	NoPL_FunctionValue val;
+	val.type = NoPL_DataType_Uninitialized;
+	return val;
+}
 
 #pragma mark - main
 
@@ -71,10 +122,36 @@ int main(int argc, const char * argv[])
 		return -1;
 	}
 	
-	//we have a valid schema file, parse it
-	SchemaData* schemaData = new SchemaData(xmlDoc->children);
+	//we have valid schema XML, build that into a series of model objects
+	schemaData = new SchemaData(xmlDoc->children);
 	
+	//compile the nopl script
+	NoPL_CompileContext noplContext = newNoPL_CompileContext();
+	NoPL_CompileOptions options = NoPL_CompileOptions();
+	options.optimizeForRuntime = 0;
+	compileContextWithFilePath(scriptFilePath, &options, &noplContext);
 	
+	//check for errors
+	if(noplContext.errDescriptions)
+	{
+		printf("NoPL script failed to compile with errors:\n%s", noplContext.errDescriptions);
+		return -1;
+	}
+	
+	//set up the callback functions
+	NoPL_Callbacks callbacks = NoPL_Callbacks();
+	callbacks.evaluateFunction = evaluateNoPLFunction;
+	callbacks.subscript = evaluateNoPLSubscript;
+	callbacks.stringFeedback = processNoPLFeedback;
+	
+	//run the script
+	runScript((NoPL_Instruction*)noplContext.compiledData, (unsigned int)noplContext.dataLength, &callbacks);
+	
+	//TODO: better job of cleanup if we exit early
+	//free the objects that we've made
+	freeNoPL_CompileContext(&noplContext);
+	delete schemaData;
+	schemaData = NULL;
 	xmlFreeDoc(xmlDoc);
 	
     return 0;

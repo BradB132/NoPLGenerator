@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		9B148221168F6184007FC679 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B148220168F6184007FC679 /* main.cpp */; };
 		9B148223168F6184007FC679 /* NoPLGenerator.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9B148222168F6184007FC679 /* NoPLGenerator.1 */; };
-		9B1483A2168F67AE007FC679 /* libNoPLc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B148333168F67AE007FC679 /* libNoPLc.a */; };
-		9B1483A3168F67AE007FC679 /* libNoPLRuntime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B148339168F67AE007FC679 /* libNoPLRuntime.a */; };
 		9B14841D1693D68F007FC679 /* AttributeData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B1484091693D68F007FC679 /* AttributeData.cpp */; };
 		9B14841E1693D68F007FC679 /* AttributeGroupData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B14840B1693D68F007FC679 /* AttributeGroupData.cpp */; };
 		9B1484201693D68F007FC679 /* ComplexTypeData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B14840F1693D68F007FC679 /* ComplexTypeData.cpp */; };
@@ -25,6 +23,8 @@
 		9B1484341695BE68007FC679 /* AnnotationData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B1484321695BE67007FC679 /* AnnotationData.cpp */; };
 		9B14843D1695C269007FC679 /* AnnotationChildData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B14843B1695C268007FC679 /* AnnotationChildData.cpp */; };
 		9B14844316960F5A007FC679 /* SchemaBaseData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B14844216960F5A007FC679 /* SchemaBaseData.cpp */; };
+		9B8C231216A132570091613F /* libNoPLRuntime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8C231116A132570091613F /* libNoPLRuntime.a */; };
+		9B8C231416A132650091613F /* libNoPLc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8C231316A132650091613F /* libNoPLc.a */; };
 		A2D77DE61692536100E892D1 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A2D77DE31692526400E892D1 /* libxml2.dylib */; };
 /* End PBXBuildFile section */
 
@@ -45,12 +45,6 @@
 		9B14821C168F6184007FC679 /* NoPLGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NoPLGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B148220168F6184007FC679 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9B148222168F6184007FC679 /* NoPLGenerator.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = NoPLGenerator.1; sourceTree = "<group>"; };
-		9B148332168F67AE007FC679 /* NoPLc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPLc.h; sourceTree = "<group>"; };
-		9B148333168F67AE007FC679 /* libNoPLc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libNoPLc.a; sourceTree = "<group>"; };
-		9B148336168F67AE007FC679 /* NoPLRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPLRuntime.h; sourceTree = "<group>"; };
-		9B148337168F67AE007FC679 /* NoPLStandardFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPLStandardFunctions.h; sourceTree = "<group>"; };
-		9B148338168F67AE007FC679 /* NoPLValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPLValues.h; sourceTree = "<group>"; };
-		9B148339168F67AE007FC679 /* libNoPLRuntime.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libNoPLRuntime.a; sourceTree = "<group>"; };
 		9B1484091693D68F007FC679 /* AttributeData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttributeData.cpp; sourceTree = "<group>"; };
 		9B14840A1693D68F007FC679 /* AttributeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeData.h; sourceTree = "<group>"; };
 		9B14840B1693D68F007FC679 /* AttributeGroupData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttributeGroupData.cpp; sourceTree = "<group>"; };
@@ -80,6 +74,8 @@
 		9B14843B1695C268007FC679 /* AnnotationChildData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnnotationChildData.cpp; sourceTree = "<group>"; };
 		9B14843C1695C268007FC679 /* AnnotationChildData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationChildData.h; sourceTree = "<group>"; };
 		9B14844216960F5A007FC679 /* SchemaBaseData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SchemaBaseData.cpp; sourceTree = "<group>"; };
+		9B8C231116A132570091613F /* libNoPLRuntime.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNoPLRuntime.a; path = NoPL_repo/CompiledLibs/runtime/libNoPLRuntime.a; sourceTree = "<group>"; };
+		9B8C231316A132650091613F /* libNoPLc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNoPLc.a; path = NoPL_repo/CompiledLibs/compiler/libNoPLc.a; sourceTree = "<group>"; };
 		A2D77DE31692526400E892D1 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -89,8 +85,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2D77DE61692536100E892D1 /* libxml2.dylib in Frameworks */,
-				9B1483A2168F67AE007FC679 /* libNoPLc.a in Frameworks */,
-				9B1483A3168F67AE007FC679 /* libNoPLRuntime.a in Frameworks */,
+				9B8C231216A132570091613F /* libNoPLRuntime.a in Frameworks */,
+				9B8C231416A132650091613F /* libNoPLc.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,8 +96,6 @@
 		9B148211168F6184007FC679 = {
 			isa = PBXGroup;
 			children = (
-				A2D77DE31692526400E892D1 /* libxml2.dylib */,
-				9B14832C168F67AE007FC679 /* NoPL_repo */,
 				9B14821F168F6184007FC679 /* NoPLGenerator */,
 				9B14821D168F6184007FC679 /* Products */,
 			);
@@ -122,61 +116,9 @@
 				9B14841C1693D68F007FC679 /* NoPLSupport */,
 				9B148220168F6184007FC679 /* main.cpp */,
 				9B148222168F6184007FC679 /* NoPLGenerator.1 */,
+				9B8C230416A1209B0091613F /* Libs */,
 			);
 			path = NoPLGenerator;
-			sourceTree = "<group>";
-		};
-		9B14832C168F67AE007FC679 /* NoPL_repo */ = {
-			isa = PBXGroup;
-			children = (
-				9B14832F168F67AE007FC679 /* CompiledLibs */,
-			);
-			path = NoPL_repo;
-			sourceTree = "<group>";
-		};
-		9B14832F168F67AE007FC679 /* CompiledLibs */ = {
-			isa = PBXGroup;
-			children = (
-				9B148330168F67AE007FC679 /* compiler */,
-				9B148334168F67AE007FC679 /* runtime */,
-			);
-			path = CompiledLibs;
-			sourceTree = "<group>";
-		};
-		9B148330168F67AE007FC679 /* compiler */ = {
-			isa = PBXGroup;
-			children = (
-				9B148331168F67AE007FC679 /* include */,
-				9B148333168F67AE007FC679 /* libNoPLc.a */,
-			);
-			path = compiler;
-			sourceTree = "<group>";
-		};
-		9B148331168F67AE007FC679 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				9B148332168F67AE007FC679 /* NoPLc.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		9B148334168F67AE007FC679 /* runtime */ = {
-			isa = PBXGroup;
-			children = (
-				9B148335168F67AE007FC679 /* include */,
-				9B148339168F67AE007FC679 /* libNoPLRuntime.a */,
-			);
-			path = runtime;
-			sourceTree = "<group>";
-		};
-		9B148335168F67AE007FC679 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				9B148336168F67AE007FC679 /* NoPLRuntime.h */,
-				9B148337168F67AE007FC679 /* NoPLStandardFunctions.h */,
-				9B148338168F67AE007FC679 /* NoPLValues.h */,
-			);
-			path = include;
 			sourceTree = "<group>";
 		};
 		9B1484081693D68F007FC679 /* DataRepresentation */ = {
@@ -220,6 +162,17 @@
 				9B1484271693D6A9007FC679 /* NoPLVector.h */,
 			);
 			path = NoPLSupport;
+			sourceTree = "<group>";
+		};
+		9B8C230416A1209B0091613F /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				9B8C231316A132650091613F /* libNoPLc.a */,
+				9B8C231116A132570091613F /* libNoPLRuntime.a */,
+				A2D77DE31692526400E892D1 /* libxml2.dylib */,
+			);
+			name = Libs;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,7 +271,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HEADER_SEARCH_PATHS = (
+					/usr/include/libxml2,
+					"$(SRCROOT)/NoPL_repo/CompiledLibs/compiler/include",
+					"$(SRCROOT)/NoPL_repo/CompiledLibs/runtime/include",
+				);
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
@@ -345,7 +302,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HEADER_SEARCH_PATHS = (
+					/usr/include/libxml2,
+					"$(SRCROOT)/NoPL_repo/CompiledLibs/compiler/include",
+					"$(SRCROOT)/NoPL_repo/CompiledLibs/runtime/include",
+				);
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = "";
@@ -358,8 +319,8 @@
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/NoPL_repo/CompiledLibs/compiler\"",
 					"\"$(SRCROOT)/NoPL_repo/CompiledLibs/runtime\"",
+					"\"$(SRCROOT)/NoPL_repo/CompiledLibs/compiler\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -370,8 +331,8 @@
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/NoPL_repo/CompiledLibs/compiler\"",
 					"\"$(SRCROOT)/NoPL_repo/CompiledLibs/runtime\"",
+					"\"$(SRCROOT)/NoPL_repo/CompiledLibs/compiler\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
