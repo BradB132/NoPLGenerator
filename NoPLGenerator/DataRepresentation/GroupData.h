@@ -11,21 +11,23 @@
 
 #include <iostream>
 #include <vector>
-#include "NoPLInterface.h"
+#include "SchemaBaseData.h"
+#include "AnnotationData.h"
 
-class GroupData : public NoPLInterface
+class GroupData : public SchemaBaseData
 {
 public:
 	
-	GroupData();
+	GroupData(xmlNodePtr xmlNode);
 	~GroupData();
 	
-	virtual NoPL_FunctionValue evaluateFunction(void* calledOnObject, const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc);
-	virtual NoPL_FunctionValue evaluateSubscript(void* calledOnObject, NoPL_FunctionValue index);
+	virtual NoPL_FunctionValue evaluateFunction(const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc);
+	virtual NoPL_FunctionValue evaluateSubscript(NoPL_FunctionValue index);
 	
 protected:
 	
 	//(annotation?,(all|choice|sequence)?)
+	AnnotationData* annotation;
 	
 };
 

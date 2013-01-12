@@ -8,7 +8,9 @@
 
 #include "GroupData.h"
 
-GroupData::GroupData()
+GroupData::GroupData(xmlNodePtr xmlNode):
+annotation(NULL),
+SchemaBaseData(xmlNode)
 {
 	
 }
@@ -18,13 +20,13 @@ GroupData::~GroupData()
 	
 }
 
-NoPL_FunctionValue GroupData::evaluateFunction(void* calledOnObject, const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc)
+NoPL_FunctionValue GroupData::evaluateFunction(const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc)
 {
 	NoPL_FunctionValue retVal;
 	return retVal;
 }
 
-NoPL_FunctionValue GroupData::evaluateSubscript(void* calledOnObject, NoPL_FunctionValue index)
+NoPL_FunctionValue GroupData::evaluateSubscript(NoPL_FunctionValue index)
 {
 	NoPL_FunctionValue retVal;
 	return retVal;

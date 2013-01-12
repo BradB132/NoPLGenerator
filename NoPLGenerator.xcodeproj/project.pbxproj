@@ -24,6 +24,7 @@
 		9B14843116952BC0007FC679 /* UnionData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B14842F16952BC0007FC679 /* UnionData.cpp */; };
 		9B1484341695BE68007FC679 /* AnnotationData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B1484321695BE67007FC679 /* AnnotationData.cpp */; };
 		9B14843D1695C269007FC679 /* AnnotationChildData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B14843B1695C268007FC679 /* AnnotationChildData.cpp */; };
+		9B14844316960F5A007FC679 /* SchemaBaseData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B14844216960F5A007FC679 /* SchemaBaseData.cpp */; };
 		A2D77DE61692536100E892D1 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A2D77DE31692526400E892D1 /* libxml2.dylib */; };
 /* End PBXBuildFile section */
 
@@ -53,21 +54,21 @@
 		9B1484091693D68F007FC679 /* AttributeData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttributeData.cpp; sourceTree = "<group>"; };
 		9B14840A1693D68F007FC679 /* AttributeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeData.h; sourceTree = "<group>"; };
 		9B14840B1693D68F007FC679 /* AttributeGroupData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttributeGroupData.cpp; sourceTree = "<group>"; };
-		9B14840C1693D68F007FC679 /* AttributeGroupData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeGroupData.h; sourceTree = "<group>"; };
+		9B14840C1693D68F007FC679 /* AttributeGroupData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AttributeGroupData.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		9B14840F1693D68F007FC679 /* ComplexTypeData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComplexTypeData.cpp; sourceTree = "<group>"; };
-		9B1484101693D68F007FC679 /* ComplexTypeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplexTypeData.h; sourceTree = "<group>"; };
+		9B1484101693D68F007FC679 /* ComplexTypeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ComplexTypeData.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		9B1484111693D68F007FC679 /* ElementData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ElementData.cpp; sourceTree = "<group>"; };
 		9B1484121693D68F007FC679 /* ElementData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElementData.h; sourceTree = "<group>"; };
 		9B1484131693D68F007FC679 /* GroupData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GroupData.cpp; sourceTree = "<group>"; };
 		9B1484141693D68F007FC679 /* GroupData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupData.h; sourceTree = "<group>"; };
-		9B1484151693D68F007FC679 /* NoPLInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPLInterface.h; sourceTree = "<group>"; };
+		9B1484151693D68F007FC679 /* SchemaBaseData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchemaBaseData.h; sourceTree = "<group>"; };
 		9B1484161693D68F007FC679 /* NotationData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NotationData.cpp; sourceTree = "<group>"; };
 		9B1484171693D68F007FC679 /* NotationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotationData.h; sourceTree = "<group>"; };
-		9B1484181693D68F007FC679 /* SchemaData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SchemaData.cpp; sourceTree = "<group>"; };
+		9B1484181693D68F007FC679 /* SchemaData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = SchemaData.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		9B1484191693D68F007FC679 /* SchemaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchemaData.h; sourceTree = "<group>"; };
 		9B14841A1693D68F007FC679 /* SimpleTypeData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleTypeData.cpp; sourceTree = "<group>"; };
 		9B14841B1693D68F007FC679 /* SimpleTypeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTypeData.h; sourceTree = "<group>"; };
-		9B1484271693D6A9007FC679 /* NoPLVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPLVector.h; sourceTree = "<group>"; };
+		9B1484271693D6A9007FC679 /* NoPLVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = NoPLVector.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		9B148429169525CB007FC679 /* EnumerationData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnumerationData.cpp; sourceTree = "<group>"; };
 		9B14842A169525CB007FC679 /* EnumerationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumerationData.h; sourceTree = "<group>"; };
 		9B14842C169525DB007FC679 /* RestrictionData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RestrictionData.cpp; sourceTree = "<group>"; };
@@ -75,9 +76,10 @@
 		9B14842F16952BC0007FC679 /* UnionData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnionData.cpp; sourceTree = "<group>"; };
 		9B14843016952BC0007FC679 /* UnionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnionData.h; sourceTree = "<group>"; };
 		9B1484321695BE67007FC679 /* AnnotationData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnnotationData.cpp; sourceTree = "<group>"; };
-		9B1484331695BE68007FC679 /* AnnotationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationData.h; sourceTree = "<group>"; };
+		9B1484331695BE68007FC679 /* AnnotationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AnnotationData.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		9B14843B1695C268007FC679 /* AnnotationChildData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnnotationChildData.cpp; sourceTree = "<group>"; };
 		9B14843C1695C268007FC679 /* AnnotationChildData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationChildData.h; sourceTree = "<group>"; };
+		9B14844216960F5A007FC679 /* SchemaBaseData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SchemaBaseData.cpp; sourceTree = "<group>"; };
 		A2D77DE31692526400E892D1 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -196,11 +198,12 @@
 				9B14842A169525CB007FC679 /* EnumerationData.h */,
 				9B1484131693D68F007FC679 /* GroupData.cpp */,
 				9B1484141693D68F007FC679 /* GroupData.h */,
-				9B1484151693D68F007FC679 /* NoPLInterface.h */,
 				9B1484161693D68F007FC679 /* NotationData.cpp */,
 				9B1484171693D68F007FC679 /* NotationData.h */,
 				9B14842C169525DB007FC679 /* RestrictionData.cpp */,
 				9B14842D169525DB007FC679 /* RestrictionData.h */,
+				9B14844216960F5A007FC679 /* SchemaBaseData.cpp */,
+				9B1484151693D68F007FC679 /* SchemaBaseData.h */,
 				9B1484181693D68F007FC679 /* SchemaData.cpp */,
 				9B1484191693D68F007FC679 /* SchemaData.h */,
 				9B14841A1693D68F007FC679 /* SimpleTypeData.cpp */,
@@ -284,6 +287,7 @@
 				9B14843116952BC0007FC679 /* UnionData.cpp in Sources */,
 				9B1484341695BE68007FC679 /* AnnotationData.cpp in Sources */,
 				9B14843D1695C269007FC679 /* AnnotationChildData.cpp in Sources */,
+				9B14844316960F5A007FC679 /* SchemaBaseData.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

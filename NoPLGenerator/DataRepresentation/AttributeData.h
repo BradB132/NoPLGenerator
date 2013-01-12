@@ -11,21 +11,26 @@
 
 #include <iostream>
 #include <vector>
-#include "NoPLInterface.h"
+#include "SchemaBaseData.h"
+#include "AnnotationData.h"
+#include "SimpleTypeData.h"
 
-class AttributeData : public NoPLInterface
+class AttributeData : public SchemaBaseData
 {
 public:
 	
-	AttributeData();
+	AttributeData(xmlNodePtr xmlNode);
 	~AttributeData();
 	
-	virtual NoPL_FunctionValue evaluateFunction(void* calledOnObject, const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc);
-	virtual NoPL_FunctionValue evaluateSubscript(void* calledOnObject, NoPL_FunctionValue index);
+	virtual NoPL_FunctionValue evaluateFunction(const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc);
+	virtual NoPL_FunctionValue evaluateSubscript(NoPL_FunctionValue index);
 	
 protected:
 	
 	//(annotation?,(simpleType?))
+	
+	AnnotationData* annotation;
+	SimpleTypeData* simpleType;
 	
 };
 

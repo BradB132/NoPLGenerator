@@ -8,7 +8,11 @@
 
 #include "ComplexTypeData.h"
 
-ComplexTypeData::ComplexTypeData()
+ComplexTypeData::ComplexTypeData(xmlNodePtr xmlNode):
+annotation(NULL),
+attributes(NULL),
+attributeGroups(NULL),
+SchemaBaseData(xmlNode)
 {
 	
 }
@@ -18,13 +22,13 @@ ComplexTypeData::~ComplexTypeData()
 	
 }
 
-NoPL_FunctionValue ComplexTypeData::evaluateFunction(void* calledOnObject, const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc)
+NoPL_FunctionValue ComplexTypeData::evaluateFunction(const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc)
 {
 	NoPL_FunctionValue retVal;
 	return retVal;
 }
 
-NoPL_FunctionValue ComplexTypeData::evaluateSubscript(void* calledOnObject, NoPL_FunctionValue index)
+NoPL_FunctionValue ComplexTypeData::evaluateSubscript(NoPL_FunctionValue index)
 {
 	NoPL_FunctionValue retVal;
 	return retVal;

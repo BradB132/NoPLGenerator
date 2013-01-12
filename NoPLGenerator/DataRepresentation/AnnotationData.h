@@ -10,7 +10,27 @@
 #define __NoPLGenerator__AnnotationData__
 
 #include <iostream>
+#include <vector>
 
-//(appinfo|documentation)*
+#include "NoPLVector.h"
+#include "SchemaBaseData.h"
+#include "AnnotationChildData.h"
+
+class AnnotationData : public SchemaBaseData
+{
+public:
+	
+	AnnotationData(xmlNodePtr xmlNode);
+	~AnnotationData();
+	
+	virtual NoPL_FunctionValue evaluateFunction(const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc);
+	virtual NoPL_FunctionValue evaluateSubscript(NoPL_FunctionValue index);
+	
+protected:
+	
+	//(appinfo|documentation)*
+	NoPLVector<AnnotationChildData*>* appinfos;
+	NoPLVector<AnnotationChildData*>* documentation;
+};
 
 #endif /* defined(__NoPLGenerator__AnnotationData__) */

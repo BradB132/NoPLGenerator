@@ -11,17 +11,17 @@
 
 #include <iostream>
 #include <vector>
-#include "NoPLInterface.h"
+#include "SchemaBaseData.h"
 
-class RestrictionData : public NoPLInterface
+class RestrictionData : public SchemaBaseData
 {
 public:
 	
-	RestrictionData();
+	RestrictionData(xmlNodePtr xmlNode);
 	~RestrictionData();
 	
-	virtual NoPL_FunctionValue evaluateFunction(void* calledOnObject, const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc);
-	virtual NoPL_FunctionValue evaluateSubscript(void* calledOnObject, NoPL_FunctionValue index);
+	virtual NoPL_FunctionValue evaluateFunction(const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc);
+	virtual NoPL_FunctionValue evaluateSubscript(NoPL_FunctionValue index);
 	
 protected:
 	

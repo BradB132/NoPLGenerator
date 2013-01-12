@@ -8,23 +8,39 @@
 
 #include "AttributeData.h"
 
-AttributeData::AttributeData()
+#pragma mark - Constructor / Destructor
+
+AttributeData::AttributeData(xmlNodePtr xmlNode):
+annotation(NULL),
+simpleType(NULL),
+SchemaBaseData(xmlNode)
 {
 	
 }
 
 AttributeData::~AttributeData()
 {
-	
+	if(annotation)
+	{
+		delete annotation;
+		annotation = NULL;
+	}
+	if(simpleType)
+	{
+		delete simpleType;
+		simpleType = NULL;
+	}
 }
 
-NoPL_FunctionValue AttributeData::evaluateFunction(void* calledOnObject, const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc)
+#pragma mark - NoPL
+
+NoPL_FunctionValue AttributeData::evaluateFunction(const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc)
 {
 	NoPL_FunctionValue retVal;
 	return retVal;
 }
 
-NoPL_FunctionValue AttributeData::evaluateSubscript(void* calledOnObject, NoPL_FunctionValue index)
+NoPL_FunctionValue AttributeData::evaluateSubscript(NoPL_FunctionValue index)
 {
 	NoPL_FunctionValue retVal;
 	return retVal;

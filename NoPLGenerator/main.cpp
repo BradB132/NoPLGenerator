@@ -16,113 +16,23 @@
 #include <libxml/schemasInternals.h>
 #include <libxml/xmlschemastypes.h>
 
-#pragma mark - Schema
+#pragma mark - Schema validation
 
-xmlSchemaPtr loadSchemaAtPath(const char* schemaPath)
+int isSchemaValid(xmlDocPtr schema_doc)
 {
-	//load the schema document from file
-	xmlDocPtr xmlDoc = xmlReadFile(schemaPath, NULL, XML_PARSE_XINCLUDE|XML_PARSE_NONET|XML_PARSE_NSCLEAN);//TODO: what are the settings we want here?
-	if(!xmlDoc)
-		return NULL;
+    xmlSchemaParserCtxtPtr parserCtx = xmlSchemaNewDocParserCtxt(schema_doc);
+    if(!parserCtx)
+        return 0;
+    xmlSchemaPtr schema = xmlSchemaParse(parserCtx);
 	
-	//attempt to create a parser
-	xmlSchemaParserCtxtPtr parser = xmlSchemaNewDocParserCtxt(xmlDoc);
-	if(!parser)
+	int isValid = 0;
+	if(schema)
 	{
-		xmlFreeDoc(xmlDoc);
-		return NULL;
+		isValid = 1;
+		xmlSchemaFree(schema);
 	}
-	
-	//attempt to parse the document as a schema
-	xmlSchemaPtr schemaDoc = xmlSchemaParse(parser);
-	
-	//free the objects that were used to load
-	xmlSchemaFreeParserCtxt(parser);
-	xmlFreeDoc(xmlDoc);
-
-	return schemaDoc;
-}
-
-void evaluateElement(void * payload, void * data, xmlChar * name)
-{
-	xmlSchemaElementPtr element = (xmlSchemaElementPtr)payload;
-	xmlNodePtr node = element->node;
-	NoPLInterface* parent = (NoPLInterface*)data;
-	
-	switch (element->type)
-	{
-		case XML_SCHEMA_TYPE_ELEMENT:
-		{
-			printf("ELEMENT: %s\n", name);
-			
-			const xmlChar * type = xmlGetProp(node, (xmlChar*)"type");
-			if(type)
-			{
-				
-			}
-			else
-			{
-				
-			}
-		}
-			break;
-		case XML_SCHEMA_TYPE_ATTRIBUTE:
-		{
-			printf("ATTRIBUTE: %s\n", name);
-		}
-			break;
-		case XML_SCHEMA_TYPE_ATTRIBUTEGROUP:
-		{
-			printf("ATTRIBUTE GROUP: %s\n", name);
-		}
-			break;
-		case XML_SCHEMA_TYPE_GROUP:
-		{
-			printf("GROUP: %s\n", name);
-		}
-			break;
-		case XML_SCHEMA_TYPE_NOTATION:
-		{
-			printf("NOTATION: %s\n", name);
-		}
-			break;
-		case XML_SCHEMA_TYPE_SIMPLE:
-		{
-			printf("SIMPLE TYPE: %s\n", name);
-		}
-			break;
-		case XML_SCHEMA_TYPE_COMPLEX:
-		{
-			printf("COMPLEX TYPE: %s\n", name);
-		}
-			break;
-		default:
-			break;
-	}
-}
-
-SchemaData* parseSchemaData(xmlSchemaPtr schema)
-{
-	SchemaData* returnData = new SchemaData();
-	
-	if(schema->typeDecl)
-		xmlHashScan(schema->typeDecl, evaluateElement, returnData);
-	if(schema->attrDecl)
-		xmlHashScan(schema->attrDecl, evaluateElement, returnData);
-	if(schema->attrgrpDecl)
-		xmlHashScan(schema->attrgrpDecl, evaluateElement, returnData);
-	if(schema->elemDecl)
-		xmlHashScan(schema->elemDecl, evaluateElement, returnData);
-	if(schema->notaDecl)
-		xmlHashScan(schema->notaDecl, evaluateElement, returnData);
-	if(schema->groupDecl)
-		xmlHashScan(schema->groupDecl, evaluateElement, returnData);
-//	if(schema->idcDef)
-//		xmlHashScan(schema->idcDef, evaluateElement, returnData);
-//	if(schema->schemasImports)
-//		xmlHashScan(schema->schemasImports, evaluateElement, returnData);
-	
-	return returnData;
+	xmlSchemaFreeParserCtxt(parserCtx);
+	return isValid;
 }
 
 #pragma mark - NoPL callbacks
@@ -143,16 +53,29 @@ int main(int argc, const char * argv[])
 	const char* schemaFilePath = argv[1];
 	const char* scriptFilePath = argv[2];
 	
-	//load the schema
+	//check libxml2 version
 	LIBXML_TEST_VERSION
-	xmlSchemaPtr schema = loadSchemaAtPath(schemaFilePath);
-	if(!schema)
+	
+	//load the schema document from file
+	xmlDocPtr xmlDoc = xmlReadFile(schemaFilePath, NULL, XML_PARSE_XINCLUDE|XML_PARSE_NONET|XML_PARSE_NSCLEAN);//TODO: what are the settings we want here?
+	if(!xmlDoc)
 	{
-		printf("Could not successfully load the schema file.");
+		printf("Could not successfully load the XML file.");
 		return -1;
 	}
 	
-	SchemaData* schemaData = parseSchemaData(schema);
+	//make sure this doc is a valid schema file
+	if(!isSchemaValid(xmlDoc))
+	{
+		printf("XML schema file was not valid.");
+		return -1;
+	}
+	
+	//we have a valid schema file, parse it
+	SchemaData* schemaData = new SchemaData(xmlDoc->children);
+	
+	
+	xmlFreeDoc(xmlDoc);
 	
     return 0;
 }

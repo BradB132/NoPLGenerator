@@ -8,7 +8,11 @@
 
 #include "AttributeGroupData.h"
 
-AttributeGroupData::AttributeGroupData()
+AttributeGroupData::AttributeGroupData(xmlNodePtr xmlNode):
+annotation(NULL),
+attributes(NULL),
+attributeGroups(NULL),
+SchemaBaseData(xmlNode)
 {
 	
 }
@@ -18,13 +22,13 @@ AttributeGroupData::~AttributeGroupData()
 	
 }
 
-NoPL_FunctionValue AttributeGroupData::evaluateFunction(void* calledOnObject, const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc)
+NoPL_FunctionValue AttributeGroupData::evaluateFunction(const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc)
 {
 	NoPL_FunctionValue retVal;
 	return retVal;
 }
 
-NoPL_FunctionValue AttributeGroupData::evaluateSubscript(void* calledOnObject, NoPL_FunctionValue index)
+NoPL_FunctionValue AttributeGroupData::evaluateSubscript(NoPL_FunctionValue index)
 {
 	NoPL_FunctionValue retVal;
 	return retVal;

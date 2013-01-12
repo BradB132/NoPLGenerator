@@ -7,3 +7,26 @@
 //
 
 #include "AnnotationChildData.h"
+
+AnnotationChildData::AnnotationChildData(xmlNodePtr xmlNode):
+SchemaBaseData(NULL)
+{
+	
+}
+
+AnnotationChildData::~AnnotationChildData()
+{
+	
+}
+
+NoPL_FunctionValue AnnotationChildData::evaluateFunction(const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc)
+{
+	NoPL_FunctionValue retVal;
+	return retVal;
+}
+
+NoPL_FunctionValue AnnotationChildData::evaluateSubscript(NoPL_FunctionValue index)
+{
+	NoPL_FunctionValue retVal;
+	return retVal;
+}

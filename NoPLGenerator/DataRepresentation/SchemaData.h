@@ -12,32 +12,33 @@
 #include <iostream>
 #include <vector>
 
-
-#include "NoPLInterface.h"
 #include "NoPLVector.h"
+#include "SchemaBaseData.h"
 #include "ElementData.h"
 #include "AttributeData.h"
 #include "AttributeGroupData.h"
 #include "GroupData.h"
+#include "AnnotationData.h"
 #include "NotationData.h"
 #include "SimpleTypeData.h"
 #include "ComplexTypeData.h"
 
-class SchemaData : public NoPLInterface
+class SchemaData : public SchemaBaseData
 {
 public:
 	
-	SchemaData();
+	SchemaData(xmlNodePtr xmlNode);
 	~SchemaData();
 	
-	virtual NoPL_FunctionValue evaluateFunction(void* calledOnObject, const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc);
-	virtual NoPL_FunctionValue evaluateSubscript(void* calledOnObject, NoPL_FunctionValue index);
+	virtual NoPL_FunctionValue evaluateFunction(const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc);
+	virtual NoPL_FunctionValue evaluateSubscript(NoPL_FunctionValue index);
 	
 	//accessors
 	NoPLVector<ElementData*>* getElements();
 	NoPLVector<AttributeData*>* getAttributes();
 	NoPLVector<AttributeGroupData*>* getAttributeGroups();
 	NoPLVector<GroupData*>* getGroups();
+	NoPLVector<AnnotationData*>* getAnnotations();
 	NoPLVector<NotationData*>* getNotations();
 	NoPLVector<SimpleTypeData*>* getSimpleTypes();
 	NoPLVector<ComplexTypeData*>* getComplexTypes();
@@ -45,8 +46,9 @@ public:
 protected:
 	
 	//((include|import|redefine|annotation)*,(((simpleType|complexType|group|attributeGroup)|element|attribute|notation),annotation*)*)
+	xmlSchemaPtr _schema;
 	
-	//things that can be inside the schema tag
+	AnnotationData* annotation;
 	NoPLVector<ElementData*>* elements;
 	NoPLVector<AttributeData*>* attributes;
 	NoPLVector<AttributeGroupData*>* attributeGroups;

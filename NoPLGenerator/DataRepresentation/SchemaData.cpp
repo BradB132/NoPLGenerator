@@ -10,16 +10,18 @@
 
 #pragma mark - Constructor / Destructor
 
-SchemaData::SchemaData():
+SchemaData::SchemaData(xmlNodePtr xmlNode):
+annotation(NULL),
 elements(NULL),
 attributes(NULL),
 attributeGroups(NULL),
 groups(NULL),
 notations(NULL),
 simpleTypes(NULL),
-complexTypes(NULL)
+complexTypes(NULL),
+SchemaBaseData(xmlNode)
 {
-	
+	printf("node type: %s", xmlNode->name);
 }
 
 SchemaData::~SchemaData()
@@ -43,6 +45,11 @@ SchemaData::~SchemaData()
 	{
 		delete groups;
 		groups = NULL;
+	}
+	if(annotation)
+	{
+		delete annotation;
+		annotation = NULL;
 	}
 	if(notations)
 	{
@@ -114,13 +121,13 @@ NoPLVector<ComplexTypeData*>* SchemaData::getComplexTypes()
 
 #pragma mark - NoPL
 
-NoPL_FunctionValue SchemaData::evaluateFunction(void* calledOnObject, const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc)
+NoPL_FunctionValue SchemaData::evaluateFunction(const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc)
 {
 	NoPL_FunctionValue retVal;
 	return retVal;
 }
 
-NoPL_FunctionValue SchemaData::evaluateSubscript(void* calledOnObject, NoPL_FunctionValue index)
+NoPL_FunctionValue SchemaData::evaluateSubscript(NoPL_FunctionValue index)
 {
 	NoPL_FunctionValue retVal;
 	return retVal;
