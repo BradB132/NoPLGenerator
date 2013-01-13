@@ -8,6 +8,16 @@
 
 #include "NoPLInterface.h"
 
+NoPLInterface::NoPLInterface()
+{
+	
+}
+
+NoPLInterface::~NoPLInterface()
+{
+	
+}
+
 NoPL_FunctionValue NoPLInterface::evaluateFunction(const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc)
 {
 	NoPL_FunctionValue val;

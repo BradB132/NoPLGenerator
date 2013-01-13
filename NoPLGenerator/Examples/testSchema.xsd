@@ -45,6 +45,8 @@
       <element ref="ts:item" maxOccurs="unbounded"/>
     </sequence>
     <attribute ref="ts:orderid" use="required"/>
+    <attribute name="count" type="int" use="required"/>
+    <attribute name="notes" type="string" use="required"/>
   </complexType>
 </element>
 

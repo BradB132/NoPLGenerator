@@ -16,6 +16,9 @@ class NoPLInterface
 {
 public:
 	
+	NoPLInterface();
+	~NoPLInterface();
+	
 	virtual NoPL_FunctionValue evaluateFunction(const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc);
 	virtual NoPL_FunctionValue evaluateSubscript(NoPL_FunctionValue index);
 };

@@ -18,10 +18,12 @@
 #include "NoPLRuntime.h"
 
 #include "NoPLSchemaNode.h"
+#include "SchemaAbstractions.h"
 
 #pragma mark - Declared variables
 
 NoPLSchemaNode* schemaData;
+SchemaAbstractions* abstractions;
 
 #pragma mark - Schema validation
 
@@ -46,7 +48,20 @@ int isSchemaValid(xmlDocPtr schema_doc)
 
 void processNoPLFeedback(const char* string, NoPL_StringFeedbackType type)
 {
-	printf("NoPL: %s\n", string);
+	switch(type)
+	{
+		case NoPL_StringFeedbackType_PrintStatement:
+			printf("%s\n", string);
+			break;
+		case NoPL_StringFeedbackType_Metadata:
+			//TODO: we're getting some template data, print this to file
+			break;
+		case NoPL_StringFeedbackType_RuntimeError:
+			printf("SCRIPT ERROR: %s\n", string);
+			break;
+		default:
+			break;
+	}
 }
 
 NoPL_FunctionValue evaluateNoPLFunction(void* calledOnObject, const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc)
@@ -65,9 +80,10 @@ NoPL_FunctionValue evaluateNoPLFunction(void* calledOnObject, const char* functi
 				retVal.pointerValue = schemaData;
 				retVal.type = NoPL_DataType_Pointer;
 			}
-			else if(!strcmp(functionName, "classes"))
+			else if(!strcmp(functionName, "abstractions"))
 			{
-				//TODO: class abstractions
+				retVal.pointerValue = abstractions;
+				retVal.type = NoPL_DataType_Pointer;
 			}
 		}
 	}
@@ -78,9 +94,20 @@ NoPL_FunctionValue evaluateNoPLFunction(void* calledOnObject, const char* functi
 		retVal = noplObject->evaluateFunction(functionName, argv, argc);
 	}
 	
-	if(retVal.type != NoPL_DataType_Uninitialized)
-		return retVal;
-	return nopl_standardFunctions(calledOnObject, functionName, argv, argc);
+	if(retVal.type == NoPL_DataType_Uninitialized)
+	{
+		//try the standard functions
+		retVal = nopl_standardFunctions(calledOnObject, functionName, argv, argc);
+	}
+	
+	if(retVal.type == NoPL_DataType_Uninitialized)
+	{
+		//we have failed to produce anything useful here, but we should never return 'Uninitialized'
+		retVal.type = NoPL_DataType_Pointer;
+		retVal.pointerValue = NULL;
+	}
+	
+	return retVal;
 }
 
 NoPL_FunctionValue evaluateNoPLSubscript(void* calledOnObject, NoPL_FunctionValue index)
@@ -131,6 +158,7 @@ int main(int argc, const char * argv[])
 	
 	//we have valid schema XML, build that into a series of model objects
 	schemaData = new NoPLSchemaNode(xmlDoc->children);
+	abstractions = new SchemaAbstractions(schemaData);
 	
 	//compile the nopl script
 	NoPL_CompileContext noplContext = newNoPL_CompileContext();
@@ -157,8 +185,16 @@ int main(int argc, const char * argv[])
 	//TODO: better job of cleanup if we exit early
 	//free the objects that we've made
 	freeNoPL_CompileContext(&noplContext);
-	delete schemaData;
-	schemaData = NULL;
+	if(schemaData)
+	{
+		delete schemaData;
+		schemaData = NULL;
+	}
+	if(abstractions)
+	{
+		delete abstractions;
+		abstractions = NULL;
+	}
 	xmlFreeDoc(xmlDoc);
 	
     return 0;

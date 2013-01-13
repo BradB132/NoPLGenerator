@@ -1,12 +1,29 @@
 
 #"Testing schema objects";
 
-Object schema = schema;
-Object elements = schema.elements;
-int count = elements.count;
+Object classes = abstractions.classes;
 
-for(int i = 0; i < count; i++)
+for(int i = 0; i < classes.length; i++)
 {
-	Object element = elements[i];
-	#element->name;
+	Object class = classes[i];
+	Object attr = class.attributes;	
+
+	String classDesc = class.className;
+	
+	if(attr.length > 0)
+	{
+		classDesc += " - ";
+		BOOL first = YES;
+		for(int j = 0; j < attr.length; j++)
+		{
+			if(!first)
+				classDesc += "\n";
+			else
+				first = NO;
+
+			classDesc += "\t"+attr[j].name;
+		}
+	}
+
+	#classDesc+"\n";
 }

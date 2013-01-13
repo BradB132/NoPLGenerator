@@ -14,7 +14,7 @@ NoPLSchemaNode::NoPLSchemaNode(xmlNodePtr xmlNode):
 node(xmlNode)
 {
 	//make sure we NULL out the vector list
-	memset(vectorList, 0, sizeof(NoPLVector<NoPLSchemaNode*>*)*SchemaTypes_TotalCount);
+	memset(vectorList, 0, sizeof(NoPLVector<NoPLSchemaNode*>*)*SchemaType_TotalCount);
 	
 	//check all of the children of this node
 	xmlNodePtr child = xmlNode->children;
@@ -25,165 +25,237 @@ node(xmlNode)
 		char* name = (char*)child->name;
 		if(!strcmp(name, "all"))
 		{
-			if(!vectorList[SchemaTypes_All])
-				vectorList[SchemaTypes_All] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_All];
+			if(!vectorList[SchemaType_All])
+				vectorList[SchemaType_All] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_All];
 		}
 		else if(!strcmp(name, "annotation"))
 		{
-			if(!vectorList[SchemaTypes_Annotation])
-				vectorList[SchemaTypes_Annotation] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_Annotation];
+			if(!vectorList[SchemaType_Annotation])
+				vectorList[SchemaType_Annotation] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_Annotation];
 		}
 		else if(!strcmp(name, "any"))
 		{
-			if(!vectorList[SchemaTypes_Any])
-				vectorList[SchemaTypes_Any] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_Any];
+			if(!vectorList[SchemaType_Any])
+				vectorList[SchemaType_Any] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_Any];
 		}
 		else if(!strcmp(name, "anyAttribute"))
 		{
-			if(!vectorList[SchemaTypes_AnyAttribute])
-				vectorList[SchemaTypes_AnyAttribute] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_AnyAttribute];
+			if(!vectorList[SchemaType_AnyAttribute])
+				vectorList[SchemaType_AnyAttribute] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_AnyAttribute];
 		}
 		else if(!strcmp(name, "appInfo"))
 		{
-			if(!vectorList[SchemaTypes_AppInfo])
-				vectorList[SchemaTypes_AppInfo] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_AppInfo];
+			if(!vectorList[SchemaType_AppInfo])
+				vectorList[SchemaType_AppInfo] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_AppInfo];
 		}
 		else if(!strcmp(name, "attribute"))
 		{
-			if(!vectorList[SchemaTypes_Attribute])
-				vectorList[SchemaTypes_Attribute] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_Attribute];
+			if(!vectorList[SchemaType_Attribute])
+				vectorList[SchemaType_Attribute] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_Attribute];
 		}
 		else if(!strcmp(name, "attributeGroup"))
 		{
-			if(!vectorList[SchemaTypes_AttributeGroup])
-				vectorList[SchemaTypes_AttributeGroup] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_AttributeGroup];
+			if(!vectorList[SchemaType_AttributeGroup])
+				vectorList[SchemaType_AttributeGroup] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_AttributeGroup];
 		}
 		else if(!strcmp(name, "choice"))
 		{
-			if(!vectorList[SchemaTypes_Choice])
-				vectorList[SchemaTypes_Choice] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_Choice];
+			if(!vectorList[SchemaType_Choice])
+				vectorList[SchemaType_Choice] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_Choice];
 		}
 		else if(!strcmp(name, "complexContent"))
 		{
-			if(!vectorList[SchemaTypes_ComplexContent])
-				vectorList[SchemaTypes_ComplexContent] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_ComplexContent];
+			if(!vectorList[SchemaType_ComplexContent])
+				vectorList[SchemaType_ComplexContent] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_ComplexContent];
 		}
 		else if(!strcmp(name, "complexType"))
 		{
-			if(!vectorList[SchemaTypes_ComplexType])
-				vectorList[SchemaTypes_ComplexType] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_ComplexType];
+			if(!vectorList[SchemaType_ComplexType])
+				vectorList[SchemaType_ComplexType] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_ComplexType];
 		}
 		else if(!strcmp(name, "documentation"))
 		{
-			if(!vectorList[SchemaTypes_Documentation])
-				vectorList[SchemaTypes_Documentation] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_Documentation];
+			if(!vectorList[SchemaType_Documentation])
+				vectorList[SchemaType_Documentation] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_Documentation];
 		}
 		else if(!strcmp(name, "element"))
 		{
-			if(!vectorList[SchemaTypes_Element])
-				vectorList[SchemaTypes_Element] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_Element];
+			if(!vectorList[SchemaType_Element])
+				vectorList[SchemaType_Element] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_Element];
+		}
+		else if(!strcmp(name, "enumeration"))
+		{
+			if(!vectorList[SchemaType_Enumeration])
+				vectorList[SchemaType_Enumeration] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_Enumeration];
 		}
 		else if(!strcmp(name, "extension"))
 		{
-			if(!vectorList[SchemaTypes_Extension])
-				vectorList[SchemaTypes_Extension] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_Extension];
+			if(!vectorList[SchemaType_Extension])
+				vectorList[SchemaType_Extension] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_Extension];
 		}
 		else if(!strcmp(name, "field"))
 		{
-			if(!vectorList[SchemaTypes_Field])
-				vectorList[SchemaTypes_Field] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_Field];
+			if(!vectorList[SchemaType_Field])
+				vectorList[SchemaType_Field] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_Field];
+		}
+		else if(!strcmp(name, "fractionDigits"))
+		{
+			if(!vectorList[SchemaType_FractionDigits])
+				vectorList[SchemaType_FractionDigits] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_FractionDigits];
 		}
 		else if(!strcmp(name, "group"))
 		{
-			if(!vectorList[SchemaTypes_Group])
-				vectorList[SchemaTypes_Group] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_Group];
+			if(!vectorList[SchemaType_Group])
+				vectorList[SchemaType_Group] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_Group];
 		}
 		else if(!strcmp(name, "key"))
 		{
-			if(!vectorList[SchemaTypes_Key])
-				vectorList[SchemaTypes_Key] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_Key];
+			if(!vectorList[SchemaType_Key])
+				vectorList[SchemaType_Key] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_Key];
 		}
 		else if(!strcmp(name, "keyRef"))
 		{
-			if(!vectorList[SchemaTypes_KeyRef])
-				vectorList[SchemaTypes_KeyRef] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_KeyRef];
+			if(!vectorList[SchemaType_KeyRef])
+				vectorList[SchemaType_KeyRef] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_KeyRef];
+		}
+		else if(!strcmp(name, "length"))
+		{
+			if(!vectorList[SchemaType_Length])
+				vectorList[SchemaType_Length] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_Length];
 		}
 		else if(!strcmp(name, "list"))
 		{
-			if(!vectorList[SchemaTypes_List])
-				vectorList[SchemaTypes_List] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_List];
+			if(!vectorList[SchemaType_List])
+				vectorList[SchemaType_List] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_List];
+		}
+		else if(!strcmp(name, "maxExclusive"))
+		{
+			if(!vectorList[SchemaType_MaxExclusive])
+				vectorList[SchemaType_MaxExclusive] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_MaxExclusive];
+		}
+		else if(!strcmp(name, "maxInclusive"))
+		{
+			if(!vectorList[SchemaType_MaxInclusive])
+				vectorList[SchemaType_MaxInclusive] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_MaxInclusive];
+		}
+		else if(!strcmp(name, "maxLength"))
+		{
+			if(!vectorList[SchemaType_MaxLength])
+				vectorList[SchemaType_MaxLength] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_MaxLength];
+		}
+		else if(!strcmp(name, "minExclusive"))
+		{
+			if(!vectorList[SchemaType_MinExclusive])
+				vectorList[SchemaType_MinExclusive] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_MinExclusive];
+		}
+		else if(!strcmp(name, "minInclusive"))
+		{
+			if(!vectorList[SchemaType_MinInclusive])
+				vectorList[SchemaType_MinInclusive] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_MinInclusive];
+		}
+		else if(!strcmp(name, "minLength"))
+		{
+			if(!vectorList[SchemaType_MinLength])
+				vectorList[SchemaType_MinLength] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_MinLength];
 		}
 		else if(!strcmp(name, "notation"))
 		{
-			if(!vectorList[SchemaTypes_Notation])
-				vectorList[SchemaTypes_Notation] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_Notation];
+			if(!vectorList[SchemaType_Notation])
+				vectorList[SchemaType_Notation] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_Notation];
+		}
+		else if(!strcmp(name, "pattern"))
+		{
+			if(!vectorList[SchemaType_Pattern])
+				vectorList[SchemaType_Pattern] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_Pattern];
 		}
 		else if(!strcmp(name, "redefine"))
 		{
-			if(!vectorList[SchemaTypes_Redefine])
-				vectorList[SchemaTypes_Redefine] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_Redefine];
+			if(!vectorList[SchemaType_Redefine])
+				vectorList[SchemaType_Redefine] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_Redefine];
 		}
 		else if(!strcmp(name, "restriction"))
 		{
-			if(!vectorList[SchemaTypes_Restriction])
-				vectorList[SchemaTypes_Restriction] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_Restriction];
+			if(!vectorList[SchemaType_Restriction])
+				vectorList[SchemaType_Restriction] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_Restriction];
 		}
 		else if(!strcmp(name, "selector"))
 		{
-			if(!vectorList[SchemaTypes_Selector])
-				vectorList[SchemaTypes_Selector] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_Selector];
+			if(!vectorList[SchemaType_Selector])
+				vectorList[SchemaType_Selector] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_Selector];
 		}
 		else if(!strcmp(name, "sequence"))
 		{
-			if(!vectorList[SchemaTypes_Sequence])
-				vectorList[SchemaTypes_Sequence] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_Sequence];
+			if(!vectorList[SchemaType_Sequence])
+				vectorList[SchemaType_Sequence] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_Sequence];
 		}
 		else if(!strcmp(name, "simpleContent"))
 		{
-			if(!vectorList[SchemaTypes_SimpleContent])
-				vectorList[SchemaTypes_SimpleContent] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_SimpleContent];
+			if(!vectorList[SchemaType_SimpleContent])
+				vectorList[SchemaType_SimpleContent] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_SimpleContent];
 		}
 		else if(!strcmp(name, "simpleType"))
 		{
-			if(!vectorList[SchemaTypes_SimpleType])
-				vectorList[SchemaTypes_SimpleType] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_SimpleType];
+			if(!vectorList[SchemaType_SimpleType])
+				vectorList[SchemaType_SimpleType] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_SimpleType];
+		}
+		else if(!strcmp(name, "totalDigits"))
+		{
+			if(!vectorList[SchemaType_TotalDigits])
+				vectorList[SchemaType_TotalDigits] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_TotalDigits];
 		}
 		else if(!strcmp(name, "union"))
 		{
-			if(!vectorList[SchemaTypes_Union])
-				vectorList[SchemaTypes_Union] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_Union];
+			if(!vectorList[SchemaType_Union])
+				vectorList[SchemaType_Union] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_Union];
 		}
 		else if(!strcmp(name, "unique"))
 		{
-			if(!vectorList[SchemaTypes_Unique])
-				vectorList[SchemaTypes_Unique] = new NoPLVector<NoPLSchemaNode*>();
-			vector = vectorList[SchemaTypes_Unique];
+			if(!vectorList[SchemaType_Unique])
+				vectorList[SchemaType_Unique] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_Unique];
+		}
+		else if(!strcmp(name, "whiteSpace"))
+		{
+			if(!vectorList[SchemaType_WhiteSpace])
+				vectorList[SchemaType_WhiteSpace] = new NoPLVector<NoPLSchemaNode*>();
+			vector = vectorList[SchemaType_WhiteSpace];
 		}
 		
 		//we should definitely have a vector, let's check just to be safe
@@ -204,7 +276,7 @@ node(xmlNode)
 NoPLSchemaNode::~NoPLSchemaNode()
 {
 	//free any vectors that were allocated
-	for(int i = 0; i < SchemaTypes_TotalCount; i++)
+	for(int i = 0; i < SchemaType_TotalCount; i++)
 	{
 		if(vectorList[i])
 		{
@@ -212,6 +284,55 @@ NoPLSchemaNode::~NoPLSchemaNode()
 			vectorList[i] = NULL;
 		}
 	}
+}
+
+#pragma mark - Abstraction accessors
+
+NoPLVector<NoPLSchemaNode*>* NoPLSchemaNode::vectorForSchemaType(SchemaType type)
+{
+	return vectorList[type];
+}
+
+NoPLSchemaNode* NoPLSchemaNode::nodeWithName(SchemaType type, char* name)
+{
+	//get the vector of nodes that matches the type
+	if(vectorList[type])
+	{
+		std::vector<NoPLSchemaNode*>* vec = vectorList[type]->getVector();
+		if(vec)
+		{
+			//search the vector for a node containing a 'name' attribute which matches the name arg
+			for(int i = 0; i < vec->size(); i++)
+			{
+				NoPLSchemaNode* node = vec->at(i);
+				if(!strcmp((char*)xmlGetProp(node->getNode(), (xmlChar*)"name"), name))
+				{
+					return node;
+				}
+			}
+		}
+	}
+	
+	return NULL;
+}
+
+xmlNodePtr NoPLSchemaNode::getNode()
+{
+	return node;
+}
+
+#pragma mark - Util
+
+char* NoPLSchemaNode::stripNamespace(char* stringWithNamespace)
+{
+	if(stringWithNamespace)
+	{
+		//strip the namespacing
+		char* shortened = strrchr(stringWithNamespace, ':');
+		if(shortened)
+			return shortened+1;
+	}
+	return stringWithNamespace;
 }
 
 #pragma mark - NoPL
@@ -225,7 +346,7 @@ NoPL_FunctionValue NoPLSchemaNode::evaluateFunction(const char* functionName, co
 	if(argc == 0)
 	{
 		//check if the NoPL script is asking for one of our lists
-		for(int i = 0; i < SchemaTypes_TotalCount; i++)
+		for(int i = 0; i < SchemaType_TotalCount; i++)
 		{
 			//skip empty lists
 			if(vectorList[i])
