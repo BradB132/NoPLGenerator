@@ -16,17 +16,40 @@ enums(NULL),
 typedefs(NULL)
 {
 	//create classes by coalescing all of the information about an 'element'
-	std::vector<NoPLSchemaNode*>* elements = node->vectorForSchemaType(SchemaType_Element)->getVector();
+	NoPLVector<NoPLSchemaNode*>* elements = node->vectorForSchemaType(SchemaType_Element);
 	if(elements)
 	{
 		//create a list for the classes
 		classes = new NoPLVector<ClassAbstraction*>();
 		
 		//populate our classes list
-		for(int i = 0; i < elements->size(); i++)
+		for(int i = 0; i < elements->getVector()->size(); i++)
 		{
-			NoPLSchemaNode* element = elements->at(i);
+			NoPLSchemaNode* element = elements->getVector()->at(i);
 			classes->getVector()->push_back(new ClassAbstraction(node, element));
+		}
+	}
+	
+	//iterate over all of the simple types
+	NoPLVector<NoPLSchemaNode*>* simpleTypes = node->vectorForSchemaType(SchemaType_SimpleType);
+	if(simpleTypes)
+	{
+		for(int i = 0; i < simpleTypes->getVector()->size(); i++)
+		{
+			NoPLSchemaNode* simpleTypeNode = simpleTypes->getVector()->at(i);
+			
+			NoPLVector<NoPLSchemaNode*>* restr = node->vectorForSchemaType(SchemaType_Restriction);
+			if(restr)
+			{
+				NoPLSchemaNode* restrNode = restr->getVector()->at(0);
+				NoPLVector<NoPLSchemaNode*>* enumVec = restrNode->vectorForSchemaType(SchemaType_Enumeration);
+				if(enumVec)
+				{
+					if(!enums)
+						enums = new NoPLVector<EnumAbstraction*>();
+					enums->getVector()->push_back(new EnumAbstraction(simpleTypeNode));
+				}
+			}
 		}
 	}
 }
@@ -38,11 +61,11 @@ SchemaAbstractions::~SchemaAbstractions()
 		delete classes;
 		classes = NULL;
 	}
-//	if(enums)
-//	{
-//		delete enums;
-//		enums = NULL;
-//	}
+	if(enums)
+	{
+		delete enums;
+		enums = NULL;
+	}
 //	if(typedefs)
 //	{
 //		delete typedefs;

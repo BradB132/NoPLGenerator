@@ -11,6 +11,7 @@
 		9B148223168F6184007FC679 /* NoPLGenerator.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9B148222168F6184007FC679 /* NoPLGenerator.1 */; };
 		9B6283DF16A1DE2E0022C20E /* ClassAbstraction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B6283DD16A1DE2E0022C20E /* ClassAbstraction.cpp */; };
 		9B6283E316A1DEE70022C20E /* SchemaAbstractions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B6283E116A1DEE70022C20E /* SchemaAbstractions.cpp */; };
+		9B62840516A3C00B0022C20E /* EnumAbstraction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B62840316A3C00B0022C20E /* EnumAbstraction.cpp */; };
 		9B8C231216A132570091613F /* libNoPLRuntime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8C231116A132570091613F /* libNoPLRuntime.a */; };
 		9B8C231416A132650091613F /* libNoPLc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8C231316A132650091613F /* libNoPLc.a */; };
 		9BE7005A16A1A78100787662 /* NoPLInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BE7005816A1A78100787662 /* NoPLInterface.cpp */; };
@@ -40,6 +41,8 @@
 		9B6283DE16A1DE2E0022C20E /* ClassAbstraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassAbstraction.h; sourceTree = "<group>"; };
 		9B6283E116A1DEE70022C20E /* SchemaAbstractions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SchemaAbstractions.cpp; sourceTree = "<group>"; };
 		9B6283E216A1DEE70022C20E /* SchemaAbstractions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchemaAbstractions.h; sourceTree = "<group>"; };
+		9B62840316A3C00B0022C20E /* EnumAbstraction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnumAbstraction.cpp; sourceTree = "<group>"; };
+		9B62840416A3C00B0022C20E /* EnumAbstraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumAbstraction.h; sourceTree = "<group>"; };
 		9B8C231116A132570091613F /* libNoPLRuntime.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNoPLRuntime.a; path = NoPL_repo/CompiledLibs/runtime/libNoPLRuntime.a; sourceTree = "<group>"; };
 		9B8C231316A132650091613F /* libNoPLc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNoPLc.a; path = NoPL_repo/CompiledLibs/compiler/libNoPLc.a; sourceTree = "<group>"; };
 		9BE7005816A1A78100787662 /* NoPLInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NoPLInterface.cpp; sourceTree = "<group>"; };
@@ -98,6 +101,8 @@
 				9BE7006116A1B39300787662 /* NoPLSchemaNode.h */,
 				9B6283DD16A1DE2E0022C20E /* ClassAbstraction.cpp */,
 				9B6283DE16A1DE2E0022C20E /* ClassAbstraction.h */,
+				9B62840316A3C00B0022C20E /* EnumAbstraction.cpp */,
+				9B62840416A3C00B0022C20E /* EnumAbstraction.h */,
 				9B6283E116A1DEE70022C20E /* SchemaAbstractions.cpp */,
 				9B6283E216A1DEE70022C20E /* SchemaAbstractions.h */,
 			);
@@ -181,6 +186,7 @@
 				9BE7006216A1B39300787662 /* NoPLSchemaNode.cpp in Sources */,
 				9B6283DF16A1DE2E0022C20E /* ClassAbstraction.cpp in Sources */,
 				9B6283E316A1DEE70022C20E /* SchemaAbstractions.cpp in Sources */,
+				9B62840516A3C00B0022C20E /* EnumAbstraction.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
