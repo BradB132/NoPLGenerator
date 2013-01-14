@@ -113,6 +113,8 @@ NoPL_FunctionValue evaluateNoPLFunction(void* calledOnObject, const char* functi
 				if(path[0] != '/')
 					path = basePath+path;
 				
+				//TODO: create the parent directories if they don't already exist
+				
 				outputFile = fopen(path.c_str(), "w");
 				
 				retVal.type = NoPL_DataType_Void;
