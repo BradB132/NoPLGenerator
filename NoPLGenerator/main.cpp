@@ -20,22 +20,28 @@
 #include "NoPLSchemaNode.h"
 #include "SchemaAbstractions.h"
 
-#pragma mark - misc variables
+#pragma mark - NoPL callback prototypes
+
+void processNoPLFeedback(const char* string, NoPL_StringFeedbackType type);
+NoPL_FunctionValue evaluateNoPLFunction(void* calledOnObject, const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc);
+NoPL_FunctionValue evaluateNoPLSubscript(void* calledOnObject, NoPL_FunctionValue index);
+
+#pragma mark - misc
 
 NoPLSchemaNode* schemaData;
 SchemaAbstractions* abstractions;
 xmlDocPtr xmlDocument;
-
-#pragma mark - File output
-
 FILE* outputFile = NULL;
 std::string currentFilePath;
 std::string basePath;
 
-void appendToFile(char* appendString)
+std::string absolutePath(char* anyPath)
 {
-	if(outputFile)
-		fputs(appendString, outputFile);
+	//check if the path is relative
+	std::string path = anyPath;
+	if(path[0] != '/')
+		path = basePath+path;
+	return path;
 }
 
 #pragma mark - Schema validation
@@ -57,17 +63,48 @@ int isSchemaValid(xmlDocPtr schema_doc)
 	return isValid;
 }
 
-#pragma mark - NoPL callbacks
+#pragma mark - NoPL
+
+int runScriptAtPath(const char* filePath)
+{
+	//compile the nopl script
+	NoPL_CompileContext noplContext = newNoPL_CompileContext();
+	NoPL_CompileOptions options = NoPL_CompileOptions();
+	options.optimizeForRuntime = 0;
+	compileContextWithFilePath(filePath, &options, &noplContext);
+	
+	//check for errors
+	if(noplContext.errDescriptions)
+	{
+		printf("NoPL script failed to compile with errors:\n%s", noplContext.errDescriptions);
+		freeNoPL_CompileContext(&noplContext);
+		return 0;
+	}
+	
+	//set up the callback functions
+	NoPL_Callbacks callbacks = NoPL_Callbacks();
+	callbacks.evaluateFunction = evaluateNoPLFunction;
+	callbacks.subscript = evaluateNoPLSubscript;
+	callbacks.stringFeedback = processNoPLFeedback;
+	
+	//run the script
+	runScript((NoPL_Instruction*)noplContext.compiledData, (unsigned int)noplContext.dataLength, &callbacks);
+	
+	//free the context
+	freeNoPL_CompileContext(&noplContext);
+	return 1;
+}
 
 void processNoPLFeedback(const char* string, NoPL_StringFeedbackType type)
 {
 	switch(type)
 	{
 		case NoPL_StringFeedbackType_PrintStatement:
-			printf("%s", string);
-			break;
 		case NoPL_StringFeedbackType_Metadata:
-			appendToFile((char*)string);
+			
+			if(outputFile)
+				fputs(string, outputFile);
+			
 			break;
 		case NoPL_StringFeedbackType_RuntimeError:
 			printf("SCRIPT ERROR: %s\n", string);
@@ -99,35 +136,56 @@ NoPL_FunctionValue evaluateNoPLFunction(void* calledOnObject, const char* functi
 				retVal.type = NoPL_DataType_Pointer;
 			}
 		}
-		else
+		else if(argc == 1 && argv[0].type == NoPL_DataType_String)
 		{
-			if(argc == 1 && argv[0].type == NoPL_DataType_String &&
-			   !strcmp(functionName, "outputToFile"))
+			//functions that take one string argument
+			if(!strcmp(functionName, "outputToFile"))
 			{
 				//close the old file if there is one
 				if(outputFile)
 					fclose(outputFile);
 				
 				//check if the path is relative
-				std::string path = argv[0].stringValue;
-				if(path[0] != '/')
-					path = basePath+path;
+				std::string path = absolutePath(argv[0].stringValue);
 				
-				//TODO: create the parent directories if they don't already exist
+				//loop over the path to create any directories that this file will need
+				char directoryChecks[path.length()+1];
+				strcpy(directoryChecks, path.c_str());
+				while(true)
+				{
+					//find the last directory delimiter
+					char* lastSlash = strrchr(directoryChecks, '/');
+					if(!lastSlash)
+						break;
+					
+					//shorten the path to only go up to this directory
+					*lastSlash = '\0';
+					if(strlen(directoryChecks) < 2)
+						break;
+					
+					//TODO: mkdir and stat are for unix, what about other platforms?
+					struct stat st;
+					int directoryExists = !stat(directoryChecks, &st);
+					if(!directoryExists)
+						mkdir(directoryChecks, 0777);
+				}
 				
 				outputFile = fopen(path.c_str(), "w");
 				
 				retVal.type = NoPL_DataType_Void;
 			}
-			else if(argc == 1 && argv[0].type == NoPL_DataType_String &&
-					(!strcmp(functionName, "e") ||
-					 !strcmp(functionName, "echo") ))
+			else if(!strcmp(functionName, "console") || !strcmp(functionName, "c"))
 			{
-				appendToFile(argv[0].stringValue);
-				
+				//output to the command line
+				printf("%s\n", argv[0].stringValue);
 				retVal.type = NoPL_DataType_Void;
 			}
-			//TODO: add function for running other file templates
+			else if(!strcmp(functionName, "runScript"))
+			{
+				//return a boolean for compile success or failure
+				retVal.booleanValue = runScriptAtPath(absolutePath(argv[0].stringValue).c_str());
+				retVal.type = NoPL_DataType_Boolean;
+			}
 		}
 	}
 	else
@@ -229,33 +287,10 @@ int main(int argc, const char * argv[])
 	schemaData = new NoPLSchemaNode(xmlDocument->children);
 	abstractions = new SchemaAbstractions(schemaData);
 	
-	//compile the nopl script
-	NoPL_CompileContext noplContext = newNoPL_CompileContext();
-	NoPL_CompileOptions options = NoPL_CompileOptions();
-	options.optimizeForRuntime = 0;
-	compileContextWithFilePath(scriptFilePath, &options, &noplContext);
-	
-	//check for errors
-	if(noplContext.errDescriptions)
-	{
-		printf("NoPL script failed to compile with errors:\n%s", noplContext.errDescriptions);
-		freeNoPL_CompileContext(&noplContext);
-		cleanup();
-		return -1;
-	}
-	
-	//set up the callback functions
-	NoPL_Callbacks callbacks = NoPL_Callbacks();
-	callbacks.evaluateFunction = evaluateNoPLFunction;
-	callbacks.subscript = evaluateNoPLSubscript;
-	callbacks.stringFeedback = processNoPLFeedback;
-	
-	//run the script
-	runScript((NoPL_Instruction*)noplContext.compiledData, (unsigned int)noplContext.dataLength, &callbacks);
+	int success = runScriptAtPath(scriptFilePath);
 	
 	//free the objects that we've made
 	cleanup();
-	freeNoPL_CompileContext(&noplContext);
 	
-    return 0;
+    return success ? 0 : -1;
 }

@@ -1,0 +1,69 @@
+
+console("generating c++ headers");
+
+Object classes = abstractions.classes;
+
+for(int i = 0; i < classes.count; i++)
+{
+	Object class = classes[i];
+	Boolean hasParentClass = (class.parentClassName != NULL);
+	
+	outputToFile("./c++_output/"+class.className+".h");
+
+//put a comment at the top with some metadata about this file
+<?
+//
+//  ?>#class.className;<?.h
+//  ?>#schema.targetNamespace;<?
+//
+//  Created by NoPLGenerator on [date].
+//  Copyright (c) [year] Brad Bambara. All rights reserved.
+//
+
+?>
+//wrap this class definition with a precompiler macro
+<?#ifndef __?>#toUpper((String)class.className);<?_H__
+#define __?>#toUpper((String)class.className);<?_H__
+
+?>
+//include the parent class if we have one
+if(hasParentClass)
+{
+	<?#include "?>#class.parentClassName;<?"
+
+?>
+}
+
+<?class ?>#class.className;
+
+if(hasParentClass)
+{
+	//declare this class as the subclass of the parent class
+	<? : public ?>#class.parentClassName;
+}
+<?
+{
+?>
+
+//check if this class has attributes
+Object attributes = class.attributes;
+if(attributes.count > 0)
+{
+<?protected:
+
+?>
+	for(int j = 0; j < attributes.count; j++)
+	{
+		Object attr = attributes[j];
+<?	?>#attr.type;<? ?>#attr.name;<?;
+?>
+	}
+}
+
+<?
+};
+
+#endif //end __?>#toUpper((String)class.className);<?_H__
+?>
+	
+}

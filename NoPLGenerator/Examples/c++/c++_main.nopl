@@ -1,0 +1,8 @@
+
+console("generating c++_main");
+
+
+
+runScript("./c++_header.nopl");
+runScript("./c++_implementation.nopl");
+runScript("./c++_enum.nopl");
