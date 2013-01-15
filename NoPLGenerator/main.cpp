@@ -11,6 +11,7 @@
 #include <libxml/xmlschemas.h>
 #include <libxml/schemasInternals.h>
 #include <libxml/xmlschemastypes.h>
+#include <sys/stat.h>
 
 #include "NoPLc.h"
 #include "NoPLValues.h"
