@@ -6,24 +6,24 @@ Object classes = abstractions.classes;
 for(int i = 0; i < classes.count; i++)
 {
 	Object class = classes[i];
+	String name = class.className;
 	Boolean hasParentClass = (class.parentClassName != NULL);
 	
-	outputToFile("./c++_output/"+class.className+".h");
+	outputToFile("./c++_output/"+name+".h");
 
 //put a comment at the top with some metadata about this file
-<?
-//
-//  ?>#class.className;<?.h
+<?//
+//  ?>#name;<?.h
 //  ?>#schema.targetNamespace;<?
 //
-//  Created by NoPLGenerator on [date].
-//  Copyright (c) [year] Brad Bambara. All rights reserved.
+//  Created by NoPLGenerator on ?>#format("%/%/%", (Number)month(), (Number)dayOfTheMonth(), (String)substring((String)year(), 2));<?.
+//  Copyright (c) ?>#year();<? Brad Bambara. All rights reserved.
 //
 
 ?>
 //wrap this class definition with a precompiler macro
-<?#ifndef __?>#toUpper((String)class.className);<?_H__
-#define __?>#toUpper((String)class.className);<?_H__
+<?#ifndef __?>#toUpper(name);<?_H__
+#define __?>#toUpper(name);<?_H__
 
 ?>
 //include the parent class if we have one
@@ -34,7 +34,7 @@ if(hasParentClass)
 ?>
 }
 
-<?class ?>#class.className;
+<?class ?>#name;
 
 if(hasParentClass)
 {
@@ -43,13 +43,32 @@ if(hasParentClass)
 }
 <?
 {
+public:
+
+	?>#name;<?();
+	~?>#name;<?();
 ?>
 
-//check if this class has attributes
 Object attributes = class.attributes;
+
+//generate accessor functions if we have attributes
 if(attributes.count > 0)
 {
-<?protected:
+<?
+?>
+	for(int j = 0; j < attributes.count; j++)
+	{
+		Object attr = attributes[j];
+<?	virtual ?>#attr.type;<? get?>#capitalize((String)attr.name);<?();
+?>
+	}
+}
+
+//declare any attributes we have
+if(attributes.count > 0)
+{
+<?
+protected:
 
 ?>
 	for(int j = 0; j < attributes.count; j++)
@@ -63,7 +82,7 @@ if(attributes.count > 0)
 <?
 };
 
-#endif //end __?>#toUpper((String)class.className);<?_H__
+#endif //end __?>#toUpper(name);<?_H__
 ?>
 	
 }
