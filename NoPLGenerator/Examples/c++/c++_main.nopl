@@ -1,7 +1,35 @@
 
 console("generating c++_main");
 
-
+//hard code any key value pairs that we already know we'll need for this language
+setKeyAndValue('byte', 'char');
+setKeyAndValue('decimal', 'int');
+setKeyAndValue('integer', 'int');
+setKeyAndValue('negativeInteger', 'int');
+setKeyAndValue('nonPositiveInteger', 'int');
+setKeyAndValue('positiveInteger', 'unsigned int');
+setKeyAndValue('nonNegativeInteger', 'unsigned int');
+setKeyAndValue('unsignedInt', 'unsigned int');
+setKeyAndValue('unsignedLong', 'unsigned long');
+setKeyAndValue('unsignedShort', 'unsigned short');
+setKeyAndValue('unsignedByte', 'unsigned char');
+setKeyAndValue('ENTITIES', 'std::string');
+setKeyAndValue('ENTITY', 'std::string');
+setKeyAndValue('ID', 'std::string');
+setKeyAndValue('IDREF', 'std::string');
+setKeyAndValue('IDREFS', 'std::string');
+setKeyAndValue('language', 'std::string');
+setKeyAndValue('Name', 'std::string');
+setKeyAndValue('NCName', 'std::string');
+setKeyAndValue('NMTOKEN', 'std::string');
+setKeyAndValue('NMTOKENS', 'std::string');
+setKeyAndValue('normalizedString', 'std::string');
+setKeyAndValue('QName', 'std::string');
+setKeyAndValue('string', 'std::string');
+setKeyAndValue('token', 'std::string');
+setKeyAndValue('anyURI', 'std::string');
+setKeyAndValue('NOTATION', 'std::string');
+setKeyAndValue('boolean', 'bool');
 
 runScript("./c++_header.nopl");
 runScript("./c++_implementation.nopl");

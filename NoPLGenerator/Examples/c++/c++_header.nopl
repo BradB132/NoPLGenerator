@@ -74,7 +74,7 @@ protected:
 	for(int j = 0; j < attributes.count; j++)
 	{
 		Object attr = attributes[j];
-<?	?>#attr.type;<? ?>#attr.name;<?;
+<?	?>#valueForKey((String)attr.type);<? ?>#attr.name;<?;
 ?>
 	}
 }

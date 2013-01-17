@@ -63,7 +63,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "/Users/bradbambara/Documents/Code/NoPLGenerator/NoPLGenerator/Examples/objC.nopl"
+            argument = "/Users/bradbambara/Documents/Code/NoPLGenerator/NoPLGenerator/Examples/c++/c++_main.nopl"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

@@ -12,6 +12,7 @@
 #include <libxml/schemasInternals.h>
 #include <libxml/xmlschemastypes.h>
 #include <sys/stat.h>
+#include <map>
 
 #include "NoPLc.h"
 #include "NoPLValues.h"
@@ -35,6 +36,7 @@ xmlDocPtr xmlDocument;
 FILE* outputFile = NULL;
 std::string currentFilePath;
 std::string basePath;
+std::map<std::string, std::string> typeMappings;
 
 std::string absolutePath(char* anyPath)
 {
@@ -187,6 +189,31 @@ NoPL_FunctionValue evaluateNoPLFunction(void* calledOnObject, const char* functi
 				retVal.booleanValue = runScriptAtPath(absolutePath(argv[0].stringValue).c_str());
 				retVal.type = NoPL_DataType_Boolean;
 			}
+			else if(!strcmp(functionName, "valueForKey"))
+			{
+				//check if the map has the key
+				const char* mappingResult;
+				if(typeMappings.find(argv[0].stringValue) != typeMappings.end())
+				{
+					//this key was found, use the mapped value
+					mappingResult = typeMappings[argv[0].stringValue].c_str();
+				}
+				else
+				{
+					//key was not found, use the original value
+					mappingResult = argv[0].stringValue;
+				}
+				
+				NoPL_assignString(mappingResult, retVal);
+			}
+		}
+		else if(argc == 2 &&
+				argv[0].type == NoPL_DataType_String &&
+				argv[1].type == NoPL_DataType_String &&
+				!strcmp(functionName, "setKeyAndValue"))
+		{
+			//set the mapping for this type
+			typeMappings[argv[0].stringValue] = argv[1].stringValue;
 		}
 	}
 	else
