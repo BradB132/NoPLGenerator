@@ -3,6 +3,9 @@ console("generating c++ headers");
 
 Object classes = abstractions.classes;
 
+String schemaNickname = schema.targetNamespace;
+schemaNickname = substring(schemaNickname, lastIndexOf(schemaNickname, "/")+1);
+
 for(int i = 0; i < classes.count; i++)
 {
 	Object class = classes[i];
@@ -14,7 +17,7 @@ for(int i = 0; i < classes.count; i++)
 //put a comment at the top with some metadata about this file
 <?//
 //  ?>#name;<?.h
-//  ?>#schema.targetNamespace;<?
+//  ?>#schemaNickname;<?
 //
 //  Created by NoPLGenerator on ?>#format("%/%/%", (Number)month(), (Number)dayOfTheMonth(), (String)substring((String)year(), 2));<?.
 //  Copyright (c) ?>#year();<? Brad Bambara. All rights reserved.
@@ -59,7 +62,7 @@ if(attributes.count > 0)
 	for(int j = 0; j < attributes.count; j++)
 	{
 		Object attr = attributes[j];
-<?	virtual ?>#attr.type;<? get?>#capitalize((String)attr.name);<?();
+<?	virtual ?>#valueForKey((String)attr.type);<? get?>#capitalize((String)attr.name);<?();
 ?>
 	}
 }

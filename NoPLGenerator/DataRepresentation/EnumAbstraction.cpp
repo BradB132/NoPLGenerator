@@ -31,6 +31,11 @@ enumValues(NULL)
 			}
 		}
 	}
+	
+	//also attempt to get the className
+	char* cName = (char*)xmlGetProp(node->getNode(), (xmlChar*)"name");
+	if(cName)
+		enumName = cName;
 }
 
 EnumAbstraction::~EnumAbstraction()
@@ -50,16 +55,23 @@ NoPL_FunctionValue EnumAbstraction::evaluateFunction(const char* functionName, c
 	retVal.type = NoPL_DataType_Uninitialized;
 	
 	//respond to length queries
-	if(argc == 0 &&
-	   (!strcmp(functionName, "count") ||
-		!strcmp(functionName, "size") ||
-		!strcmp(functionName, "length")))
+	if(argc == 0)
 	{
-		retVal.type = NoPL_DataType_Number;
-		if(enumValues)
-			retVal.numberValue = (float)enumValues->size();
-		else
-			retVal.numberValue = 0;
+		if(!strcmp(functionName, "count") ||
+		   !strcmp(functionName, "size") ||
+		   !strcmp(functionName, "length"))
+		{
+			retVal.type = NoPL_DataType_Number;
+			if(enumValues)
+				retVal.numberValue = (float)enumValues->size();
+			else
+				retVal.numberValue = 0;
+		}
+		else if(!strcmp(functionName, "enumName"))
+		{
+			const char* enumName_c = enumName.c_str();
+			NoPL_assignString(enumName_c, retVal);
+		}
 	}
 	
 	return retVal;

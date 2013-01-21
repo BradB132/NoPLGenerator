@@ -26,6 +26,7 @@ public:
 	
 protected:
 	
+	std::string enumName;
 	std::vector<std::string>* enumValues;
 };
 

@@ -38,9 +38,11 @@ typedefs(NULL)
 		{
 			NoPLSchemaNode* simpleTypeNode = simpleTypes->getVector()->at(i);
 			
-			NoPLVector<NoPLSchemaNode*>* restr = node->vectorForSchemaType(SchemaType_Restriction);
+			//examine the restriction tag in this simple type
+			NoPLVector<NoPLSchemaNode*>* restr = simpleTypeNode->vectorForSchemaType(SchemaType_Restriction);
 			if(restr)
 			{
+				//check if this is an enumeration type
 				NoPLSchemaNode* restrNode = restr->getVector()->at(0);
 				NoPLVector<NoPLSchemaNode*>* enumVec = restrNode->vectorForSchemaType(SchemaType_Enumeration);
 				if(enumVec)

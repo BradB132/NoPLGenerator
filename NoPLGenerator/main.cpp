@@ -177,6 +177,20 @@ NoPL_FunctionValue evaluateNoPLFunction(void* calledOnObject, const char* functi
 				
 				retVal.type = NoPL_DataType_Void;
 			}
+			else if(!strcmp(functionName, "fileExists"))
+			{
+				//get the absolute path
+				std::string path = absolutePath(argv[0].stringValue);
+				
+				//check if this file exists
+				FILE* file = fopen(path.c_str(), "r");
+				retVal.booleanValue = (file != NULL);
+				retVal.type = NoPL_DataType_Boolean;
+				
+				//cleanup
+				if(file)
+					fclose(file);
+			}
 			else if(!strcmp(functionName, "console") || !strcmp(functionName, "c"))
 			{
 				//output to the command line

@@ -13,6 +13,23 @@
 <element name="quantity" type="positiveInteger"/>
 <element name="price" type="decimal"/>
 
+<simpleType name="carType">
+  <restriction base="string">
+    <enumeration value="Audi"/>
+    <enumeration value="Golf"/>
+    <enumeration value="BMW"/>
+  </restriction>
+</simpleType>
+
+<simpleType name="color">
+  <restriction base="string">
+    <enumeration value="red"/>
+    <enumeration value="green"/>
+    <enumeration value="blue"/>
+    <enumeration value="yellow"/>
+  </restriction>
+</simpleType>
+
 <attribute name="orderid" type="string"></attribute>
 
 <element name="shipto">
