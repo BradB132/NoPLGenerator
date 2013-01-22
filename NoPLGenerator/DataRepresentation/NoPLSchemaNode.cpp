@@ -361,9 +361,9 @@ NoPL_FunctionValue NoPLSchemaNode::evaluateFunction(const char* functionName, co
 				else
 				{
 					//pluralize the tag by appending an 's' character
-					static char* concatString[50];
-					strncpy((char*)concatString, vectorList[i]->getTag().c_str(), 49);
-					strncat((char*)concatString, "s", 49);
+					static char concatString[50];
+					strncpy(concatString, vectorList[i]->getTag().c_str(), 49);
+					strncat(concatString, "s", 49);
 					
 					//check if the script has asked for the pluralized name
 					if(!strcmp(functionName, (char*)concatString))
