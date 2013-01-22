@@ -59,7 +59,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/bradbambara/Documents/Code/NoPLGenerator/NoPLGenerator/Examples/testSchema.xsd"
+            argument = "/Users/bradbambara/Documents/Code/Cocos2dXML/Cocos2dXML/Cocos2d.xsd"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

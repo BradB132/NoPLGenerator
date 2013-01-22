@@ -31,6 +31,17 @@ setKeyAndValue('anyURI', 'std::string');
 setKeyAndValue('NOTATION', 'std::string');
 setKeyAndValue('boolean', 'bool');
 
+//loop to add all typedefs as key-value pairs
+Object typedefs  = abstractions.typedefs;
+if(typedefs != NULL)
+{
+	for(int i = 0; i < typedefs.length; i++)
+	{
+		Pointer typedef = typedefs[i];
+		setKeyAndValue((String)typedef.schemaName, (String)typedef.name);
+	}
+}
+
 runScript("./c++_header.nopl");
 runScript("./c++_implementation.nopl");
 runScript("./c++_enum.nopl");

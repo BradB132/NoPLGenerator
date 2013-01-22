@@ -32,10 +32,10 @@ enumValues(NULL)
 		}
 	}
 	
-	//also attempt to get the className
-	char* cName = (char*)xmlGetProp(node->getNode(), (xmlChar*)"name");
-	if(cName)
-		enumName = cName;
+	//also attempt to get the enumName
+	char* eName = (char*)xmlGetProp(node->getNode(), (xmlChar*)"name");
+	if(eName)
+		enumName = eName;
 }
 
 EnumAbstraction::~EnumAbstraction()

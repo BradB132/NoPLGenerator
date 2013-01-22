@@ -16,6 +16,7 @@
 		9B70EFD116A78C1200C7459C /* libNoPLc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B70EFC216A78BFC00C7459C /* libNoPLc.a */; };
 		9BE7005A16A1A78100787662 /* NoPLInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BE7005816A1A78100787662 /* NoPLInterface.cpp */; };
 		9BE7006216A1B39300787662 /* NoPLSchemaNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BE7006016A1B39300787662 /* NoPLSchemaNode.cpp */; };
+		9BF34B1B16AE305C00FD3B66 /* TypedefAbstraction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BF34B1916AE305C00FD3B66 /* TypedefAbstraction.cpp */; };
 		A2D77DE61692536100E892D1 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A2D77DE31692526400E892D1 /* libxml2.dylib */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +95,8 @@
 		9BE7005916A1A78100787662 /* NoPLInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPLInterface.h; sourceTree = "<group>"; };
 		9BE7006016A1B39300787662 /* NoPLSchemaNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NoPLSchemaNode.cpp; sourceTree = "<group>"; };
 		9BE7006116A1B39300787662 /* NoPLSchemaNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoPLSchemaNode.h; sourceTree = "<group>"; };
+		9BF34B1916AE305C00FD3B66 /* TypedefAbstraction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypedefAbstraction.cpp; sourceTree = "<group>"; };
+		9BF34B1A16AE305C00FD3B66 /* TypedefAbstraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypedefAbstraction.h; sourceTree = "<group>"; };
 		A2D77DE31692526400E892D1 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -150,6 +153,8 @@
 				9B6283DE16A1DE2E0022C20E /* ClassAbstraction.h */,
 				9B62840316A3C00B0022C20E /* EnumAbstraction.cpp */,
 				9B62840416A3C00B0022C20E /* EnumAbstraction.h */,
+				9BF34B1916AE305C00FD3B66 /* TypedefAbstraction.cpp */,
+				9BF34B1A16AE305C00FD3B66 /* TypedefAbstraction.h */,
 				9B6283E116A1DEE70022C20E /* SchemaAbstractions.cpp */,
 				9B6283E216A1DEE70022C20E /* SchemaAbstractions.h */,
 			);
@@ -295,6 +300,7 @@
 				9B6283DF16A1DE2E0022C20E /* ClassAbstraction.cpp in Sources */,
 				9B6283E316A1DEE70022C20E /* SchemaAbstractions.cpp in Sources */,
 				9B62840516A3C00B0022C20E /* EnumAbstraction.cpp in Sources */,
+				9BF34B1B16AE305C00FD3B66 /* TypedefAbstraction.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

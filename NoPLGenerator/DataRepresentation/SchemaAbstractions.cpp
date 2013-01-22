@@ -50,6 +50,27 @@ typedefs(NULL)
 					if(!enums)
 						enums = new NoPLVector<EnumAbstraction*>();
 					enums->getVector()->push_back(new EnumAbstraction(simpleTypeNode));
+					
+					continue;
+				}
+				
+				//check if this is a typedef
+				NoPLVector<NoPLSchemaNode*>* annotVec = restrNode->vectorForSchemaType(SchemaType_Annotation);
+				if(annotVec)
+				{
+					for (int j = 0; j < annotVec->getVector()->size(); j++)
+					{
+						//this is formatted the way we're expecting if the annotation specifies an 'id'
+						bool isTypedef = (xmlGetProp(annotVec->getVector()->at(j)->getNode(), (xmlChar*)"id") != NULL);
+						if(isTypedef)
+						{
+							if(!typedefs)
+								typedefs = new NoPLVector<TypedefAbstraction*>();
+							typedefs->getVector()->push_back(new TypedefAbstraction(simpleTypeNode));
+							
+							break;
+						}
+					}
 				}
 			}
 		}
@@ -68,11 +89,11 @@ SchemaAbstractions::~SchemaAbstractions()
 		delete enums;
 		enums = NULL;
 	}
-//	if(typedefs)
-//	{
-//		delete typedefs;
-//		typedefs = NULL;
-//	}
+	if(typedefs)
+	{
+		delete typedefs;
+		typedefs = NULL;
+	}
 }
 
 #pragma mark - NoPL

@@ -15,6 +15,7 @@
 #include "NoPLSchemaNode.h"
 #include "ClassAbstraction.h"
 #include "EnumAbstraction.h"
+#include "TypedefAbstraction.h"
 
 class SchemaAbstractions : public NoPLInterface
 {
@@ -30,7 +31,7 @@ protected:
 	
 	NoPLVector<ClassAbstraction*>* classes;
 	NoPLVector<EnumAbstraction*>* enums;
-	NoPLVector<NoPLInterface*>* typedefs;
+	NoPLVector<TypedefAbstraction*>* typedefs;
 	
 };
 
