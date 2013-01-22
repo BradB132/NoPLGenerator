@@ -383,7 +383,8 @@ NoPL_FunctionValue NoPLSchemaNode::evaluateFunction(const char* functionName, co
 			const xmlChar* value = xmlGetProp(node, (xmlChar*)functionName);
 			if(value)
 			{
-				char* strValue = (char*)value;
+				//strip the namespacing
+				char* strValue = NoPLSchemaNode::stripNamespace((char*)value);
 				NoPL_assignString(strValue, retVal);
 			}
 		}

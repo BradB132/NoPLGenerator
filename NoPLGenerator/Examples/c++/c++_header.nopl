@@ -10,7 +10,8 @@ for(int i = 0; i < classes.count; i++)
 {
 	Object class = classes[i];
 	String name = class.className;
-	Boolean hasParentClass = (class.parentClassName != NULL);
+	String parentName = class.parentClassName;
+	Boolean hasParentClass = (parentName != "");
 	
 	outputToFile("./c++_output/"+name+".h");
 
@@ -32,7 +33,7 @@ for(int i = 0; i < classes.count; i++)
 //include the parent class if we have one
 if(hasParentClass)
 {
-	<?#include "?>#class.parentClassName;<?"
+	<?#include "?>#parentName;<?.h"
 
 ?>
 }
@@ -42,7 +43,7 @@ if(hasParentClass)
 if(hasParentClass)
 {
 	//declare this class as the subclass of the parent class
-	<? : public ?>#class.parentClassName;
+	<? : public ?>#parentName;
 }
 <?
 {
@@ -71,6 +72,8 @@ if(attributes.count > 0)
 if(attributes.count > 0)
 {
 <?
+	virtual void initWithXML(xmlNodePtr* node);
+	
 protected:
 
 ?>
