@@ -14,7 +14,7 @@ outputToFile("./c++_output/"+schemaNickname+"_enums.h");
 //  ?>#schemaNickname;<?
 //
 //  Created by NoPLGenerator on ?>#format("%/%/%", (Number)month(), (Number)dayOfTheMonth(), (String)substring((String)year(), 2));<?.
-//  Copyright (c) ?>#year();<? Brad Bambara. All rights reserved.
+//  Copyright (c) ?>#year();<?. All rights reserved.
 //
 
 #ifndef __?>#toUpper(schemaNickname);<?_ENUMS_H__
@@ -38,8 +38,17 @@ if(enums != NULL)
 ?>
 		for(int j = 0; j < enum.length; j++)
 		{
-			String enumVal = enum[j];
-<?	?>#enumName;<?_?>#enumVal;<?,
+			Object enumObj = enum[j];
+<?	?>#enumName;<?_?>#enumObj.value;
+
+//check if we've defined an actual value for this enum entry
+//(this is just something I did, not an attribute typically included in a schema)
+String def = enumObj.define;
+if(def != "0x0")
+{
+	<? = ?>#def;
+}
+<?,
 ?>
 		}
 <?}?>#enumName;<?;
@@ -83,12 +92,13 @@ for(int i = 0; i < enums.length; i++)
 ?>
 	for(int j = 0; j < enum.length; j++)
 	{
-		String enumVal = enum[j];
+		Object enumObj = enum[j];
+		String enumStr = enumObj.value;
 <?	?>
 		if(j != 0)
 			<?else ?>
-	<?if(!strcmp(enumStringC, "?>#enumVal;<?")
-		return ?>#enumName;<?_?>#enumVal;<?
+	<?if(!strcmp(enumStringC, "?>#enumStr;<?")
+		return ?>#enumName;<?_?>#enumStr;<?
 ?>
 	}
 <?	return (?>#enumName;<?)-1;
@@ -101,9 +111,10 @@ std::string ?>#enumName;<?_to_string(?>#enumName;<? enumValue)
 ?>
 	for(int j = 0; j < enum.length; j++)
 	{
-		String enumVal = enum[j];
-<?		case ?>#enumName;<?_?>#enumVal;<?:
-			return "?>#enumVal;<?";
+		Object enumObj = enum[j];
+		String enumStr = enumObj.value;
+<?		case ?>#enumName;<?_?>#enumStr;<?:
+			return "?>#enumStr;<?";
 ?>
 	}
 <?		default:

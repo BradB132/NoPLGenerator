@@ -38,6 +38,8 @@ ClassAbstraction::~ClassAbstraction()
 
 void ClassAbstraction::addContentFromNode(NoPLSchemaNode* schemaRoot, NoPLSchemaNode* schemaNode)
 {
+	//TODO: make sure we account for 'Derivation by restriction': http://www.ibm.com/developerworks/library/x-flexschema/
+	
 	xmlNodePtr node = schemaNode->getNode();
 	if(!strcmp((char*)node->name, "any"))
 	{

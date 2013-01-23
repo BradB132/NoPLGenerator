@@ -366,7 +366,7 @@ NoPL_FunctionValue NoPLSchemaNode::evaluateFunction(const char* functionName, co
 					strncat(concatString, "s", 49);
 					
 					//check if the script has asked for the pluralized name
-					if(!strcmp(functionName, (char*)concatString))
+					if(!strcmp(functionName, concatString))
 					{
 						retVal.pointerValue = vectorList[i];
 						retVal.type = NoPL_DataType_Pointer;

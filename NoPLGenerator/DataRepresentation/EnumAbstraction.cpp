@@ -21,14 +21,10 @@ enumValues(NULL)
 		NoPLVector<NoPLSchemaNode*>* enums = restrNode->vectorForSchemaType(SchemaType_Enumeration);
 		if(enums)
 		{
-			enumValues = new std::vector<std::string>();
+			enumValues = new std::vector<NoPLSchemaNode*>();
 			
 			for(int i = 0; i < enums->getVector()->size(); i++)
-			{
-				xmlNodePtr node = enums->getVector()->at(i)->getNode();
-				char* value = (char*)xmlGetProp(node, (xmlChar*)"value");
-				enumValues->push_back(value);
-			}
+				enumValues->push_back(enums->getVector()->at(i));
 		}
 	}
 	
@@ -89,8 +85,8 @@ NoPL_FunctionValue EnumAbstraction::evaluateSubscript(NoPL_FunctionValue index)
 		int intIndex = (int)index.numberValue;
 		if(intIndex >= 0 && intIndex < enumValues->size())
 		{
-			const char* str = enumValues->at(intIndex).c_str();
-			NoPL_assignString(str, retVal);
+			retVal.pointerValue = enumValues->at(intIndex);
+			retVal.type = NoPL_DataType_Pointer;
 		}
 	}
 	

@@ -21,7 +21,7 @@ for(int i = 0; i < classes.count; i++)
 //  ?>#schemaNickname;<?
 //
 //  Created by NoPLGenerator on ?>#format("%/%/%", (Number)month(), (Number)dayOfTheMonth(), (String)substring((String)year(), 2));<?.
-//  Copyright (c) ?>#year();<? Brad Bambara. All rights reserved.
+//  Copyright (c) ?>#year();<?. All rights reserved.
 //
 
 ?>
@@ -54,6 +54,7 @@ public:
 ?>
 
 Object attributes = class.attributes;
+Object children = class.children;
 
 //generate accessor functions if we have attributes
 if(attributes.count > 0)

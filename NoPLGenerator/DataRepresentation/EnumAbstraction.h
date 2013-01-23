@@ -27,7 +27,7 @@ public:
 protected:
 	
 	std::string enumName;
-	std::vector<std::string>* enumValues;
+	std::vector<NoPLSchemaNode*>* enumValues;
 };
 
 #endif /* defined(__NoPLGenerator__EnumAbstraction__) */
