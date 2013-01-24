@@ -262,7 +262,7 @@ node(xmlNode)
 		if(vector)
 		{
 			//set the correct type name on this vector
-			vector->setTag((char*)child->name);
+			vector->setTag(name);
 			
 			//add a new child to this list
 			vector->getVector()->push_back(new NoPLSchemaNode(child));

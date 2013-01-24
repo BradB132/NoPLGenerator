@@ -102,6 +102,11 @@ void ClassAbstraction::addContentFromNode(NoPLSchemaNode* schemaRoot, NoPLSchema
 		}
 		else
 		{
+			//also attempt to get the className
+			char* cName = (char*)xmlGetProp(node, (xmlChar*)"name");
+			if(cName)
+				className = cName;
+			
 			//we're not a child element, check if we have a type reference
 			char* typeName = NoPLSchemaNode::stripNamespace((char*)xmlGetProp(node, (xmlChar*)"type"));
 			if(typeName)
@@ -111,11 +116,6 @@ void ClassAbstraction::addContentFromNode(NoPLSchemaNode* schemaRoot, NoPLSchema
 				if(typeNode)
 					addContentFromNode(schemaRoot, typeNode);
 			}
-			
-			//also attempt to get the className
-			char* cName = (char*)xmlGetProp(node, (xmlChar*)"name");
-			if(cName)
-				className = cName;
 		}
 	}
 	else if(!strcmp((char*)node->name, "extension"))
@@ -181,6 +181,14 @@ void ClassAbstraction::addContentFromNode(NoPLSchemaNode* schemaRoot, NoPLSchema
 	if(vec)
 		for(int i = 0; i < vec->getVector()->size(); i++)
 			addContentFromNode(schemaRoot, vec->getVector()->at(i));
+	vec = schemaNode->vectorForSchemaType(SchemaType_Element);
+	if(vec)
+		for(int i = 0; i < vec->getVector()->size(); i++)
+			this->addContentFromNode(schemaRoot, vec->getVector()->at(i));
+	vec = schemaNode->vectorForSchemaType(SchemaType_Any);
+	if(vec)
+		for(int i = 0; i < vec->getVector()->size(); i++)
+			this->addContentFromNode(schemaRoot, vec->getVector()->at(i));
 }
 
 #pragma mark - NoPL

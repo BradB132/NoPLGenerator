@@ -47,6 +47,25 @@ std::string absolutePath(char* anyPath)
 	return path;
 }
 
+bool attemptReplaceSuffix(std::string* outStr, const std::string oldSuffix, const std::string newSuffix)
+{
+	std::string input = *outStr;
+	//make sure that this could even be possible
+	if (input.length() >= oldSuffix.length())
+	{
+		//check if this is actually the suffix of the string
+        bool endingMatches = (0 == input.compare(input.length() - oldSuffix.length(), oldSuffix.length(), oldSuffix));
+		if(endingMatches)
+		{
+			//replace the suffix
+			
+			*outStr = input.substr(0, input.length() - oldSuffix.length()) + newSuffix;
+			return true;
+		}
+    }
+	return false;
+}
+
 #pragma mark - Schema validation
 
 int isSchemaValid(xmlDocPtr schema_doc)
@@ -219,6 +238,30 @@ NoPL_FunctionValue evaluateNoPLFunction(void* calledOnObject, const char* functi
 				}
 				
 				NoPL_assignString(mappingResult, retVal);
+			}
+			else if(!strcmp(functionName, "pluralize"))
+			{
+				//this is a convenience function for naming lists of stuff
+				//(pluralizing everything correctly is surprisingly hard in english)
+				std::string listName = argv[0].stringValue;
+				
+				//attempt a list of pretty reliable english language singular->plural substitutions
+				bool didReplace = attemptReplaceSuffix(&listName, "us", "i");//ex: cactus -> cacti
+				if(!didReplace)
+					didReplace = attemptReplaceSuffix(&listName, "is", "es");//ex: crisis -> crises
+				if(!didReplace)
+					didReplace = attemptReplaceSuffix(&listName, "ix", "ices");//ex: matrix -> matrices
+//				if(!didReplace)
+//					didReplace = attemptReplaceSuffix(&listName, "um", "a");//ex: datum -> data
+				if(!didReplace)
+					didReplace = attemptReplaceSuffix(&listName, "y", "ies");//ex: tally -> tallies
+				
+				//if none of these fancy things work, just add 's'
+				if(!didReplace)
+					listName += "s";
+				
+				const char* cVal = (const char*)listName.c_str();
+				NoPL_assignString(cVal, retVal);
 			}
 		}
 		else if(argc == 2 &&

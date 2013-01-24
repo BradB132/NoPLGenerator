@@ -64,7 +64,22 @@ if(attributes.count > 0)
 	for(int j = 0; j < attributes.count; j++)
 	{
 		Object attr = attributes[j];
-<?	virtual ?>#valueForKey((String)attr.type);<? get?>#capitalize((String)attr.name);<?();
+		String capName = capitalize((String)attr.name);
+		String typeName = valueForKey((String)attr.type);
+<?	virtual ?>#typeName;<? get?>#capName;<?();
+	virtual bool set?>#capName;<?(?>#typeName;<? new?>#capName;<?);
+
+?>
+	}
+}
+
+if(children.count > 0)
+{
+	for(int j = 0; j < children.count; j++)
+	{
+		Object child = children[j];
+		String listName = capitalize((String)pluralize((String)child.name));
+<?	virtual CCArray* get?>#listName;<?();
 ?>
 	}
 }
@@ -82,6 +97,17 @@ protected:
 	{
 		Object attr = attributes[j];
 <?	?>#valueForKey((String)attr.type);<? ?>#attr.name;<?;
+?>
+	}
+}
+
+if(children.count > 0)
+{
+	for(int j = 0; j < children.count; j++)
+	{
+		Object child = children[j];
+		String listName = pluralize((String)child.name);
+<?	CCArray* ?>#listName;<?;
 ?>
 	}
 }

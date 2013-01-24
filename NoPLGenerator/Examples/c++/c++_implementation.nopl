@@ -3,9 +3,69 @@ console("generating c++ implementations");
 
 Object classes = abstractions.classes;
 
+String schemaNickname = schema.targetNamespace;
+schemaNickname = substring(schemaNickname, lastIndexOf(schemaNickname, "/")+1);
+
 for(int i = 0; i < classes.count; i++)
 {
 	Object class = classes[i];
+	String name = class.className;
 
-	outputToFile("./c++_output/"+class.className+".cpp");
+	outputToFile("./c++_output/"+name+".cpp");
+
+//put a comment at the top with some metadata about this file
+<?//
+//  ?>#name;<?.cpp
+//  ?>#schemaNickname;<?
+//
+//  Created by NoPLGenerator on ?>#format("%/%/%", (Number)month(), (Number)dayOfTheMonth(), (String)substring((String)year(), 2));<?.
+//  Copyright (c) ?>#year();<?. All rights reserved.
+//
+
+#include "?>#name;<?.h"
+
+?>
+
+Object attributes = class.attributes;
+
+//create the constructor / desctuctor
+#name;<?::?>#name;<?()
+{
+}
+
+?>#name;<?::~?>#name;<?()
+{
+}
+
+void ?>#name;<?::initWithXML(xmlNodePtr* node)
+{
+	//TODO: xml loading
+}
+
+?>
+
+if(attributes.count > 0)
+{
+	for(int j = 0; j < attributes.count; j++)
+	{
+		Object attr = attributes[j];
+		String attrName = attr.name;
+		String capName = capitalize(attrName);
+		String typeName = valueForKey((String)attr.type);
+#typeName;<? ?>#name;<?::get?>#capName;<?()
+{
+	return ?>#attrName;<?;
+}
+
+bool ?>#name;<?::set?>#capName;<?(?>#typeName;<? new?>#capName;<?)
+{
+	?>#attrName;<? = new?>#capName;<?;
+	return true;
+}
+
+?>
+	}
+}
+
+
 }
