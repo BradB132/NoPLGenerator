@@ -68,6 +68,7 @@ public:
 	
 	//implementing NoPL interface
 	virtual NoPL_FunctionValue evaluateFunction(const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc);
+	virtual NoPL_FunctionValue evaluateSubscript(NoPL_FunctionValue index);
 	
 	//abstraction accessors
 	virtual NoPLVector<NoPLSchemaNode*>* vectorForSchemaType(SchemaType type);

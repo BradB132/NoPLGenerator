@@ -307,6 +307,13 @@ NoPL_FunctionValue evaluateNoPLSubscript(void* calledOnObject, NoPL_FunctionValu
 		retVal = noplObject->evaluateSubscript(index);
 	}
 	
+	if(retVal.type == NoPL_DataType_Uninitialized)
+	{
+		//we have failed to produce anything useful here, but we should never return 'Uninitialized'
+		retVal.type = NoPL_DataType_Pointer;
+		retVal.pointerValue = NULL;
+	}
+	
 	return retVal;
 }
 

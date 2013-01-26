@@ -395,3 +395,26 @@ NoPL_FunctionValue NoPLSchemaNode::evaluateFunction(const char* functionName, co
 		return retVal;
 	return NoPLInterface::evaluateFunction(functionName, argv, argc);
 }
+
+NoPL_FunctionValue NoPLSchemaNode::evaluateSubscript(NoPL_FunctionValue index)
+{
+	NoPL_FunctionValue retVal;
+	retVal.type = NoPL_DataType_Uninitialized;
+	
+	if(index.type == NoPL_DataType_String)
+	{
+		//check for attributes on this XML tag
+		const xmlChar* value = xmlGetProp(node, (xmlChar*)index.stringValue);
+		if(value)
+		{
+			//strip the namespacing
+			char* strValue = NoPLSchemaNode::stripNamespace((char*)value);
+			NoPL_assignString(strValue, retVal);
+		}
+	}
+	
+	//return the result if we found one
+	if(retVal.type != NoPL_DataType_Uninitialized)
+		return retVal;
+	return NoPLInterface::evaluateSubscript(index);
+}

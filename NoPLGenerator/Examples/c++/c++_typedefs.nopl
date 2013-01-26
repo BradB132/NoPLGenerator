@@ -1,0 +1,32 @@
+
+console("generating c++ typedefs");
+
+String schemaNickname = schema.targetNamespace;
+schemaNickname = substring(schemaNickname, lastIndexOf(schemaNickname, "/")+1);
+
+//Object typedefs = abstractions.typedefs;
+
+//generate the header file for the enums
+outputToFile("./c++_output/"+schemaNickname+"_typedefs.h");
+
+<?//
+//  ?>#schemaNickname;<?_typedefs.h
+//  ?>#schemaNickname;<?
+//
+//  Created by NoPLGenerator on ?>#format("%/%/%", (Number)month(), (Number)dayOfTheMonth(), (String)substring((String)year(), 2));<?.
+//  Copyright (c) ?>#year();<?. All rights reserved.
+//
+
+typedef std::string Cocos2dXMLEvent;
+
+typedef std::string Cocos2dXMLEventListener;
+
+typedef std::string Cocos2dXMLFilePath;
+
+typedef struct
+{
+	ccColor3B rgb;
+	unsigned char a;
+}Cocos2dXMLColor;
+
+?>

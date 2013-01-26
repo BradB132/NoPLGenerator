@@ -48,3 +48,4 @@ if(typedefs != NULL)
 runScript("./c++_header.nopl");
 runScript("./c++_implementation.nopl");
 runScript("./c++_enum.nopl");
+runScript("./c++_typedefs.nopl");

@@ -27,15 +27,88 @@ for(int i = 0; i < classes.count; i++)
 ?>
 
 Object attributes = class.attributes;
+Object children = class.children;
+
+bool hasDefaults = children.count > 0;
+if(!hasDefaults)
+{
+	for(int j = 0; j < attributes.length; j++)
+	{
+		//default is a NoPL keyword, so we need to access it with a subscript
+		if(attributes[j]['default'] != '0x0')
+		{
+			hasDefaults = YES;
+			break;
+		}
+	}
+}
 
 //create the constructor / desctuctor
-#name;<?::?>#name;<?()
+#name;<?::?>#name;<?()?>
+if(hasDefaults)
+{
+	<?:
+?>
+	BOOL first = YES;
+	for(int j = 0; j < attributes.length; j++)
+	{
+		Object attr = attributes[j];
+
+		//default is a NoPL keyword, so we need to access it with a subscript
+		if(attr['default'] != '0x0')
+		{
+			if(!first)
+			{
+				<?,
+?>
+			}
+			first = NO;
+			String defaultStr = attr['default'];
+			switch(valueForKey((String)attr.type))
+			{
+				case 'std::string':
+				case 'ccColor3B':
+				case 'Cocos2dXMLColor':
+					//this is a string, enclose it in quotes
+					defaultStr = format('"%"', defaultStr);
+					break;
+			}
+			#attr.name;<?(?>#defaultStr;<?)?>
+		}
+	}
+	for(int j = 0; j < children.length; j++)
+	{
+		Object child = children[j];
+		
+		if(!first)
+		{
+			<?,
+?>
+		}
+		first = NO;
+		String listName = pluralize((String)child.name);
+		#listName;<?(new CCArray())?>
+	}
+}
+<?
 {
 }
 
 ?>#name;<?::~?>#name;<?()
 {
+?>
+for(int j = 0; j < children.length; j++)
+{
+	Object child = children[j];
+	String listName = pluralize((String)child.name);
+<?	if(?>#listName;<?)
+	{
+		delete ?>#listName;<?;
+		?>#listName;<? = NULL;
+	}
+?>
 }
+<?}
 
 void ?>#name;<?::initWithXML(xmlNodePtr* node)
 {
@@ -61,6 +134,22 @@ bool ?>#name;<?::set?>#capName;<?(?>#typeName;<? new?>#capName;<?)
 {
 	?>#attrName;<? = new?>#capName;<?;
 	return true;
+}
+
+?>
+	}
+}
+
+if(children.count > 0)
+{
+	for(int j = 0; j < children.count; j++)
+	{
+		Object child = children[j];
+		String listName = pluralize((String)child.name);
+		String capName = capitalize(listName);
+<?CCArray* ?>#name;<?::get?>#listName;<?()
+{
+	return ?>#listName;<?
 }
 
 ?>
