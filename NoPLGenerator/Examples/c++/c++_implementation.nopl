@@ -10,7 +10,27 @@ for(int i = 0; i < classes.count; i++)
 {
 	Object class = classes[i];
 	String name = class.className;
+	String parentName = class.parentClassName;
+	Boolean hasParentClass = (parentName != "");
 
+	//output a blank file if we didn't already have one
+	if(!fileExists("./c++_output/"+name+".cpp"))
+	{
+		outputToFile("./c++_output/"+name+".cpp");
+//put a comment at the top with some metadata about this file
+<?//
+//  ?>#name;<?.h
+//  ?>#schemaNickname;<?
+//
+//  Created by NoPLGenerator on ?>#format("%/%/%", (Number)month(), (Number)dayOfTheMonth(), (String)substring((String)year(), 2));<?.
+//  Copyright (c) ?>#year();<?. All rights reserved.
+//
+
+?>
+	}
+	
+	//output a base class with generated code
+	name += "_Base";
 	outputToFile("./c++_output/"+name+".cpp");
 
 //put a comment at the top with some metadata about this file
@@ -64,13 +84,34 @@ if(hasDefaults)
 			}
 			first = NO;
 			String defaultStr = attr['default'];
-			switch(valueForKey((String)attr.type))
+			String typeName = valueForKey((String)attr.type);
+			switch(typeName)
 			{
 				case 'std::string':
-				case 'ccColor3B':
-				case 'Cocos2dXMLColor':
 					//this is a string, enclose it in quotes
 					defaultStr = format('"%"', defaultStr);
+					break;
+				case 'CCPoint':
+				case 'Cocos2dXMLColor':
+				case 'ccColor3B':
+					defaultStr = format('string_to_%("%")', typeName, defaultStr);
+					break;
+				default:
+					//determine if this is an enum
+					BOOL isEnum = NO;
+					Object enums = abstractions.enums;
+					for(int k = 0; k < enums.length; k++)
+					{
+						if(enums[k].enumName == typeName)
+						{
+							isEnum = YES;
+							break;
+						}
+					}
+					if(isEnum)
+					{
+						defaultStr = typeName+"_"+defaultStr;
+					}
 					break;
 			}
 			#attr.name;<?(?>#defaultStr;<?)?>
@@ -112,8 +153,111 @@ for(int j = 0; j < children.length; j++)
 
 void ?>#name;<?::initWithXML(xmlNodePtr* node)
 {
-	//TODO: xml loading
+?>
+if(hasParentClass)
+{
+<?	?>#parentName;<?::initWithXML(node);
+
+?>
 }
+
+if(attributes.count > 0)
+{
+	for(int j = 0; j < attributes.count; j++)
+	{
+		Object attr = attributes[j];
+		String attrName = attr.name;
+<?	?>
+		if(j ==0)
+		{
+			<?char* ?>
+		}
+
+	<?attrVal = (char*)xmlGetProp(node, (xmlChar*)"?>#attrName;<?");
+	if(attrVal)
+?>
+		String typeName = valueForKey((String)attr.type);
+		switch(typeName)
+		{
+			case 'int':
+<?		?>#attrName;<? = atoi(attrVal);
+?>
+				break;
+			case 'double':
+			case 'float':
+<?		?>#attrName;<? = atof(attrVal);
+?>
+				break;
+			case 'CCPoint':
+			case 'Cocos2dXMLColor':
+			case 'ccColor3B':
+			case 'bool':
+<?		?>#attrName;<? = string_to_?>#typeName;<?(attrVal);
+?>
+				break;
+			default:
+<?		?>
+				//determine if this is an enum
+				BOOL isEnum = NO;
+				Object enums = abstractions.enums;
+				for(int k = 0; k < enums.length; k++)
+				{
+					if(enums[k].enumName == typeName)
+					{
+						isEnum = YES;
+						break;
+					}
+				}
+				if(isEnum)
+				{
+					//this is an enum type
+					#attrName;<? = string_to_?>#typeName;<?(attrVal);
+?>
+				}
+				else
+				{
+					//this is a string?
+					#attrName;<? = attrVal;
+?>
+				}
+
+				break;
+		}
+	}
+<?
+?>
+}
+
+if(children.count > 0)
+{
+<?	xmlNodePtr child = xmlNode->children;
+	while(child)
+	{
+?>
+	for(int j = 0; j < children.count; j++)
+	{
+		Object child = children[j];
+		String childName = child.name;
+<?		?>
+		if(j != 0)
+		{
+			<?else ?>
+		}
+
+		<?if(!strcmp((char*)child->name, "?>#childName;<?")
+		{
+			?>#childName;<?* newObj = new ?>#childName;<?();
+			?>#pluralize(childName);<?->addObject(newObj);
+			newObj->initWithXML(child);
+		}
+?>
+	}
+<?		child = child->next;
+	}
+?>
+}
+
+<?}
 
 ?>
 

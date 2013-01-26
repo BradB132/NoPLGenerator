@@ -12,7 +12,38 @@ for(int i = 0; i < classes.count; i++)
 	String name = class.className;
 	String parentName = class.parentClassName;
 	Boolean hasParentClass = (parentName != "");
+
+	//output a blank file if we didn't already have one
+	if(!fileExists("./c++_output/"+name+".h"))
+	{
+		outputToFile("./c++_output/"+name+".h");
+//put a comment at the top with some metadata about this file
+<?//
+//  ?>#name;<?.h
+//  ?>#schemaNickname;<?
+//
+//  Created by NoPLGenerator on ?>#format("%/%/%", (Number)month(), (Number)dayOfTheMonth(), (String)substring((String)year(), 2));<?.
+//  Copyright (c) ?>#year();<?. All rights reserved.
+//
+
+?>
+//wrap this class definition with a precompiler macro
+<?#ifndef __?>#toUpper(name);<?_H__
+#define __?>#toUpper(name);<?_H__
+
+#import "?>#name;<?_Base.h"
+
+class ?>#name;<? : public ?>#name;<?_Base
+{
 	
+};
+
+#endif //end __?>#toUpper(name);<?_H__
+?>
+	}
+	
+	//output a base class with generated code
+	name += "_Base";
 	outputToFile("./c++_output/"+name+".h");
 
 //put a comment at the top with some metadata about this file
@@ -82,13 +113,14 @@ if(children.count > 0)
 <?	virtual CCArray* get?>#listName;<?();
 ?>
 	}
+<?
+?>
 }
 
 //declare any attributes we have
 if(attributes.count > 0)
 {
-<?
-	virtual void initWithXML(xmlNodePtr* node);
+<?	virtual void initWithXML(xmlNodePtr* node);
 	
 protected:
 
