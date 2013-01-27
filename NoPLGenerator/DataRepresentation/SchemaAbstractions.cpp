@@ -58,18 +58,31 @@ typedefs(NULL)
 				NoPLVector<NoPLSchemaNode*>* annotVec = restrNode->vectorForSchemaType(SchemaType_Annotation);
 				if(annotVec)
 				{
+					bool shouldBreak;
 					for (int j = 0; j < annotVec->getVector()->size(); j++)
 					{
-						//this is formatted the way we're expecting if the annotation specifies an 'id'
-						bool isTypedef = (xmlGetProp(annotVec->getVector()->at(j)->getNode(), (xmlChar*)"id") != NULL);
-						if(isTypedef)
+						shouldBreak = false;
+						NoPLSchemaNode* annot = annotVec->getVector()->at(j);
+						NoPLVector<NoPLSchemaNode*>* appinfos = annot->vectorForSchemaType(SchemaType_AppInfo);
+						if(appinfos)
 						{
-							if(!typedefs)
-								typedefs = new NoPLVector<TypedefAbstraction*>();
-							typedefs->getVector()->push_back(new TypedefAbstraction(simpleTypeNode));
-							
-							break;
+							for(int k = 0; k < appinfos->getVector()->size(); k++)
+							{
+								NoPLSchemaNode* info = appinfos->getVector()->at(k);
+								xmlNodePtr xmlNode = info->getNode();
+								if(xmlNode->children && xmlNode->children->type == XML_TEXT_NODE && xmlNode->children->content)
+								{
+									if(!typedefs)
+										typedefs = new NoPLVector<TypedefAbstraction*>();
+									typedefs->getVector()->push_back(new TypedefAbstraction(simpleTypeNode));
+									
+									shouldBreak = true;
+									break;
+								}
+							}
 						}
+						if(shouldBreak)
+							break;
 					}
 				}
 			}

@@ -47,7 +47,7 @@ node(xmlNode)
 				vectorList[SchemaType_AnyAttribute] = new NoPLVector<NoPLSchemaNode*>();
 			vector = vectorList[SchemaType_AnyAttribute];
 		}
-		else if(!strcmp(name, "appInfo"))
+		else if(!strcmp(name, "appinfo"))
 		{
 			if(!vectorList[SchemaType_AppInfo])
 				vectorList[SchemaType_AppInfo] = new NoPLVector<NoPLSchemaNode*>();
@@ -328,9 +328,17 @@ char* NoPLSchemaNode::stripNamespace(char* stringWithNamespace)
 	if(stringWithNamespace)
 	{
 		//strip the namespacing
-		char* shortened = strrchr(stringWithNamespace, ':');
+		char* shortened = strchr(stringWithNamespace, ':');
 		if(shortened)
-			return shortened+1;
+		{
+			shortened++;
+			
+			//make sure there's only 1 colon, or else this is some other thing
+			if(!strchr(shortened, ':'))
+			{
+				return shortened;
+			}
+		}
 	}
 	return stringWithNamespace;
 }

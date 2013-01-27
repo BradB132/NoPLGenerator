@@ -25,12 +25,19 @@ TypedefAbstraction::TypedefAbstraction(NoPLSchemaNode* node)
 		{
 			for(int i = 0; i < annots->getVector()->size(); i++)
 			{
-				xmlNodePtr node = annots->getVector()->at(i)->getNode();
-				char* idValue = (char*)xmlGetProp(node, (xmlChar*)"id");
-				if(idValue)
+				NoPLSchemaNode* annot = annots->getVector()->at(i);
+				NoPLVector<NoPLSchemaNode*>* appinfos = annot->vectorForSchemaType(SchemaType_AppInfo);
+				if(appinfos)
 				{
-					name = idValue;
-					break;
+					for(int k = 0; k < appinfos->getVector()->size(); k++)
+					{
+						NoPLSchemaNode* info = appinfos->getVector()->at(k);
+						if(info->getNode()->children->content)
+						{
+							name = (char*)(info->getNode()->children->content);
+							return;
+						}
+					}
 				}
 			}
 		}
