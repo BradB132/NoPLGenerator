@@ -359,7 +359,7 @@ int main(int argc, const char * argv[])
 	LIBXML_TEST_VERSION
 	
 	//load the schema document from file
-	xmlDocument = xmlReadFile(schemaFilePath, NULL, XML_PARSE_XINCLUDE|XML_PARSE_NONET|XML_PARSE_NSCLEAN);//TODO: what are the settings we want here?
+	xmlDocument = xmlReadFile(schemaFilePath, NULL, XML_PARSE_XINCLUDE|XML_PARSE_NONET|XML_PARSE_NSCLEAN);
 	if(!xmlDocument)
 	{
 		printf("Could not successfully load the XML file.");
