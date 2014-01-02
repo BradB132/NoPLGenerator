@@ -24,9 +24,9 @@
 
 #pragma mark - NoPL callback prototypes
 
-void processNoPLFeedback(const char* string, NoPL_StringFeedbackType type);
-NoPL_FunctionValue evaluateNoPLFunction(void* calledOnObject, const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc);
-NoPL_FunctionValue evaluateNoPLSubscript(void* calledOnObject, NoPL_FunctionValue index);
+void processNoPLFeedback(const char* string, NoPL_StringFeedbackType type, void* context);
+NoPL_FunctionValue evaluateNoPLFunction(void* calledOnObject, const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc, void* context);
+NoPL_FunctionValue evaluateNoPLSubscript(void* calledOnObject, NoPL_FunctionValue index, void* context);
 
 #pragma mark - misc
 
@@ -110,14 +110,14 @@ int runScriptAtPath(const char* filePath)
 	callbacks.stringFeedback = processNoPLFeedback;
 	
 	//run the script
-	runScript((NoPL_Instruction*)noplContext.compiledData, (unsigned int)noplContext.dataLength, &callbacks);
+	nopl_runScript((NoPL_Instruction*)noplContext.compiledData, (unsigned int)noplContext.dataLength, &callbacks, NULL);
 	
 	//free the context
 	freeNoPL_CompileContext(&noplContext);
 	return 1;
 }
 
-void processNoPLFeedback(const char* string, NoPL_StringFeedbackType type)
+void processNoPLFeedback(const char* string, NoPL_StringFeedbackType type, void* context)
 {
 	switch(type)
 	{
@@ -136,7 +136,7 @@ void processNoPLFeedback(const char* string, NoPL_StringFeedbackType type)
 	}
 }
 
-NoPL_FunctionValue evaluateNoPLFunction(void* calledOnObject, const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc)
+NoPL_FunctionValue evaluateNoPLFunction(void* calledOnObject, const char* functionName, const NoPL_FunctionValue* argv, unsigned int argc, void* context)
 {
 	NoPL_FunctionValue retVal;
 	retVal.type = NoPL_DataType_Uninitialized;
@@ -296,7 +296,7 @@ NoPL_FunctionValue evaluateNoPLFunction(void* calledOnObject, const char* functi
 	return retVal;
 }
 
-NoPL_FunctionValue evaluateNoPLSubscript(void* calledOnObject, NoPL_FunctionValue index)
+NoPL_FunctionValue evaluateNoPLSubscript(void* calledOnObject, NoPL_FunctionValue index, void* context)
 {
 	NoPL_FunctionValue retVal;
 	retVal.type = NoPL_DataType_Uninitialized;
