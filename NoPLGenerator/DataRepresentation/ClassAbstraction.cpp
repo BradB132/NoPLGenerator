@@ -51,31 +51,43 @@ void ClassAbstraction::addContentFromNode(NoPLSchemaNode* schemaRoot, NoPLSchema
 	}
 	else if(!strcmp((char*)node->name, "attribute"))
 	{
-		//check if this node is actually a reference to another
-		char* name = NoPLSchemaNode::stripNamespace((char*)xmlGetProp(node, (xmlChar*)"ref"));
-		if(name)
+		xmlChar* refStr = xmlGetProp(node, (xmlChar*)"ref");
+		if(refStr)
 		{
-			//attempt to find the actual node for this reference
-			NoPLSchemaNode* referencedNode = schemaRoot->nodeWithName(SchemaType_Attribute, name);
-			if(referencedNode)
-				addContentFromNode(schemaRoot, referencedNode);
-		}
-		else
-		{
-			//this attribute is defined right here
-			attributes->getVector()->push_back(schemaNode);
+			//check if this node is actually a reference to another
+			char* name = NoPLSchemaNode::stripNamespace((char*)refStr);
+			if(name)
+			{
+				//attempt to find the actual node for this reference
+				NoPLSchemaNode* referencedNode = schemaRoot->nodeWithName(SchemaType_Attribute, name);
+				if(referencedNode)
+					addContentFromNode(schemaRoot, referencedNode);
+			}
+			else
+			{
+				//this attribute is defined right here
+				attributes->getVector()->push_back(schemaNode);
+			}
+			
+			xmlFree(refStr);
 		}
 	}
 	else if(!strcmp((char*)node->name, "attributeGroup"))
 	{
-		//check if this node is actually a reference to another
-		char* name = NoPLSchemaNode::stripNamespace((char*)xmlGetProp(node, (xmlChar*)"ref"));
-		if(name)
+		xmlChar* refStr = xmlGetProp(node, (xmlChar*)"ref");
+		if(refStr)
 		{
-			//attempt to find the actual node for this reference
-			NoPLSchemaNode* referencedNode = schemaRoot->nodeWithName(SchemaType_AttributeGroup, name);
-			if(referencedNode)
-				addContentFromNode(schemaRoot, referencedNode);
+			//check if this node is actually a reference to another
+			char* name = NoPLSchemaNode::stripNamespace((char*)refStr);
+			if(name)
+			{
+				//attempt to find the actual node for this reference
+				NoPLSchemaNode* referencedNode = schemaRoot->nodeWithName(SchemaType_AttributeGroup, name);
+				if(referencedNode)
+					addContentFromNode(schemaRoot, referencedNode);
+			}
+			
+			xmlFree(refStr);
 		}
 	}
 	else if(!strcmp((char*)node->name, "element"))
@@ -85,19 +97,25 @@ void ClassAbstraction::addContentFromNode(NoPLSchemaNode* schemaRoot, NoPLSchema
 		if(!strcmp(parentNodeType, "all") ||
 		   !strcmp(parentNodeType, "sequence") )
 		{
-			//check if this node is actually a reference to another
-			char* name = NoPLSchemaNode::stripNamespace((char*)xmlGetProp(node, (xmlChar*)"ref"));
-			if(name)
+			xmlChar* refStr = xmlGetProp(node, (xmlChar*)"ref");
+			if(refStr)
 			{
-				//attempt to find the actual node for this reference
-				NoPLSchemaNode* referencedNode = schemaRoot->nodeWithName(SchemaType_Element, name);
-				if(referencedNode)
-					children->getVector()->push_back(referencedNode);
-			}
-			else
-			{
-				//this node is not referencing anything else, just add it
-				children->getVector()->push_back(schemaNode);
+				//check if this node is actually a reference to another
+				char* name = NoPLSchemaNode::stripNamespace((char*)refStr);
+				if(name)
+				{
+					//attempt to find the actual node for this reference
+					NoPLSchemaNode* referencedNode = schemaRoot->nodeWithName(SchemaType_Element, name);
+					if(referencedNode)
+						children->getVector()->push_back(referencedNode);
+				}
+				else
+				{
+					//this node is not referencing anything else, just add it
+					children->getVector()->push_back(schemaNode);
+				}
+				
+				xmlFree(refStr);
 			}
 		}
 		else
@@ -105,36 +123,57 @@ void ClassAbstraction::addContentFromNode(NoPLSchemaNode* schemaRoot, NoPLSchema
 			//also attempt to get the className
 			char* cName = (char*)xmlGetProp(node, (xmlChar*)"name");
 			if(cName)
+			{
 				className = cName;
+				xmlFree(cName);
+			}
 			
 			//we're not a child element, check if we have a type reference
-			char* typeName = NoPLSchemaNode::stripNamespace((char*)xmlGetProp(node, (xmlChar*)"type"));
-			if(typeName)
+			xmlChar* typeStr = xmlGetProp(node, (xmlChar*)"type");
+			if(typeStr)
 			{
-				//try looking for complex types
-				NoPLSchemaNode* typeNode = schemaRoot->nodeWithName(SchemaType_ComplexType, typeName);
-				if(typeNode)
-					addContentFromNode(schemaRoot, typeNode);
+				char* typeName = NoPLSchemaNode::stripNamespace((char*)typeStr);
+				if(typeName)
+				{
+					//try looking for complex types
+					NoPLSchemaNode* typeNode = schemaRoot->nodeWithName(SchemaType_ComplexType, typeName);
+					if(typeNode)
+						addContentFromNode(schemaRoot, typeNode);
+				}
+				
+				xmlFree(typeStr);
 			}
 		}
 	}
 	else if(!strcmp((char*)node->name, "extension"))
 	{
-		//check for the name of the parent
-		char* name = NoPLSchemaNode::stripNamespace((char*)xmlGetProp(node, (xmlChar*)"base"));
-		if(name)
-			parentClassName = name;
+		xmlChar* baseStr = xmlGetProp(node, (xmlChar*)"base");
+		if(baseStr)
+		{
+			//check for the name of the parent
+			char* name = NoPLSchemaNode::stripNamespace((char*)baseStr);
+			if(name)
+				parentClassName = name;
+			
+			xmlFree(baseStr);
+		}
 	}
 	else if(!strcmp((char*)node->name, "group"))
 	{
-		//check if this node is actually a reference to another
-		char* name = NoPLSchemaNode::stripNamespace((char*)xmlGetProp(node, (xmlChar*)"ref"));
-		if(name)
+		xmlChar* refStr = xmlGetProp(node, (xmlChar*)"ref");
+		if(refStr)
 		{
-			//attempt to find the actual node for this reference
-			NoPLSchemaNode* referencedNode = schemaRoot->nodeWithName(SchemaType_Group, name);
-			if(referencedNode)
-				addContentFromNode(schemaRoot, referencedNode);
+			//check if this node is actually a reference to another
+			char* name = NoPLSchemaNode::stripNamespace((char*)refStr);
+			if(name)
+			{
+				//attempt to find the actual node for this reference
+				NoPLSchemaNode* referencedNode = schemaRoot->nodeWithName(SchemaType_Group, name);
+				if(referencedNode)
+					addContentFromNode(schemaRoot, referencedNode);
+			}
+			
+			xmlFree(refStr);
 		}
 	}
 	

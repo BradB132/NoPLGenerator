@@ -305,9 +305,15 @@ NoPLSchemaNode* NoPLSchemaNode::nodeWithName(SchemaType type, char* name)
 			for(int i = 0; i < vec->size(); i++)
 			{
 				NoPLSchemaNode* node = vec->at(i);
-				if(!strcmp((char*)xmlGetProp(node->getNode(), (xmlChar*)"name"), name))
+				
+				xmlChar* nameStr = xmlGetProp(node->getNode(), (xmlChar*)"name");
+				if(nameStr)
 				{
-					return node;
+					bool matchesName = !strcmp((char*)nameStr, name);
+					xmlFree(nameStr);
+					
+					if(matchesName)
+						return node;
 				}
 			}
 		}
