@@ -255,6 +255,8 @@ NoPL_FunctionValue evaluateNoPLFunction(void* calledOnObject, const char* functi
 //					didReplace = attemptReplaceSuffix(&listName, "um", "a");//ex: datum -> data
 				if(!didReplace)
 					didReplace = attemptReplaceSuffix(&listName, "y", "ies");//ex: tally -> tallies
+				if(!didReplace)
+					didReplace = attemptReplaceSuffix(&listName, "ss", "sses");//ex: pass -> passes
 				
 				//if none of these fancy things work, just add 's'
 				if(!didReplace)
